@@ -1,9 +1,14 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
-const logoimage = require("../assets/images/snapLogo.png");
+import { useRouter } from "expo-router";
+ export const logoimage = require("../assets/images/snapLogo.png");
+// This is for login or registerbuttons!!!!
+const buttons = [
+  { title: "Login", link: "/LoginScreen" },
+  { title: "Register", link: "/Registration" },
+];
 
 export default function Screen() {
-  const buttons = ["Login", "Register"];
-
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <View style={styles.topView}>
@@ -14,24 +19,24 @@ export default function Screen() {
       </View>
 
       <View style={styles.buttonContainer}>
-        {buttons.map((button, index) => (
+        {buttons.map((button: any, index: number) => (
           <Pressable
             key={index}
             style={[
               styles.button,
-              button === "Register"
+              button.title === "Register"
                 ? styles.registerButton
                 : styles.loginButton,
             ]}
-            onPress={() => console.log(`${button} Pressed`)}
+            onPress={() => router.push(button.link)}
           >
             <Text
               style={[
                 styles.buttonText,
-                button === "Register" ? styles.registerButtonText : {},
+                button.title === "Register" ? styles.registerButtonText : {},
               ]}
             >
-              {button}
+              {button.title}
             </Text>
           </Pressable>
         ))}
@@ -82,8 +87,8 @@ const styles = StyleSheet.create({
   loginButton: {
     backgroundColor: "green",
   },
-  registerButton:{
-    backgroundColor:"transparent"
+  registerButton: {
+    backgroundColor: "transparent",
   },
   buttonText: {
     color: "white",
