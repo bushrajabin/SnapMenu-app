@@ -8,15 +8,16 @@ import {
   Image,
   SafeAreaView,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import { logoimage } from "./splashScreen";
-import { initialInputFields } from "../components/Common";
+// import Icon from "react-native-vector-icons/FontAwesome";
+import { logoimage } from "../SplashScreen";
+import { initialInputFields } from "../../components/Common";
+import { Icons } from "../../components/Common";
 
 export default function LoginPage() {
   const [inputFields, setInputFields] = useState(initialInputFields);
 
   // Handler to update input values
-  const handleInputChange = (value, index) => {
+  const handleInputChange = (value: string, index: number) => {
     const updatedFields = [...inputFields];
     updatedFields[index].input = value;
     setInputFields(updatedFields);
@@ -34,10 +35,11 @@ export default function LoginPage() {
       <View style={styles.inputContainer}>
         {inputFields.map((field, index) => (
           <View key={index} style={styles.inputField}>
-            <Text style={styles.inputLabel}>{field.title}</Text>
+            {/* <Text style={styles.inputLabel}>{field.title}</Text> */}
             <TextInput
               style={styles.textInput}
-              placeholder={`Enter your ${field.title.toLowerCase()}`}
+              // placeholder={`Enter your ${field.title.toLowerCase()}`}
+              placeholder={field.title}
               value={field.input}
               onChangeText={(value) => handleInputChange(value, index)}
               secureTextEntry={field.title.toLowerCase() === "password"} // Secure text for password
@@ -62,9 +64,13 @@ export default function LoginPage() {
 
         {/* ICONS {GOOGLE, FB, APPLE} */}
         <View style={styles.IconsContainer}>
-          <Icon name="google" size={16} style={styles.Icon} />
-          <Icon name="facebook" size={16} style={styles.Icon} />
-          <Icon name="apple" size={16} style={styles.Icon} />
+          {Icons.map((icon, index) => {
+            return (
+              <View key={index} style={styles.Icon}>
+                {icon}
+              </View>
+            );
+          })}
         </View>
 
         <Image source={logoimage} style={styles.LogoImage} />
@@ -83,7 +89,7 @@ const styles = StyleSheet.create({
   textContainer: {
     alignItems: "center",
     marginBottom: 20,
-    paddingTop: 90,
+    paddingTop: 100,
   },
   text: {
     color: "green",
@@ -164,9 +170,6 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     padding: 10,
-    justifyContent: "space-between",
-    alignItems: "center",
-    textAlign: "center",
   },
   Icon: {
     backgroundColor: "lightgrey",
@@ -175,9 +178,10 @@ const styles = StyleSheet.create({
     margin: 9,
     textAlign: "center",
     borderRadius: 4,
+    alignItems: "center",
   },
   LogoImage: {
-    width: 160,
+    width: 100,
     objectFit: "contain",
     paddingBottom: 40,
   },

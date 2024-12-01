@@ -9,7 +9,7 @@ const App = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      router.push("/splashScreen");
+      router.push("/SplashScreen");
     });
     return () => clearTimeout(timer);
   }, []);

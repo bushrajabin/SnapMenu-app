@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, Image, Pressable } from "react-native";
 import { useRouter } from "expo-router";
- export const logoimage = require("../assets/images/snapLogo.png");
+ export const logoimage = require("../../assets/images/snapLogo.png");
 // This is for login or registerbuttons!!!!
 const buttons = [
-  { title: "Login", link: "/LoginScreen" },
+  { title: "Login", link: "/Login" },
   { title: "Register", link: "/Registration" },
 ];
 
