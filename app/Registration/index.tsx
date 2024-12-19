@@ -11,11 +11,15 @@ import {
 import { initialInputFields } from "../../components/Common";
 import { Icons } from "../../components/Common";
 import { logoimage } from "../SplashScreen";
+import { Link, useRouter } from "expo-router";
+import { useNavigation } from "expo-router";
 
 export default function Registration() {
   const [inputFields, setInputFields] = useState(
     initialInputFields(true, true)
   );
+  const navigation = useNavigation();
+  const router = useRouter();
 
   // Handler to update input values
   const handleInputChange = (value: string, index: number) => {
@@ -61,13 +65,17 @@ export default function Registration() {
           );
         })}
         {/* Sign Up Button */}
-        <Pressable>
-          <Text style={[styles.signUpButton, styles.buttonShadow]}>
-            Sign Up
-          </Text>
+
+        <Pressable
+          onPress={() => router.push("/SettingPage")} // Fallback navigation
+        >
+          <Text style={[styles.signUpButton, styles.buttonShadow]}>SignUp</Text>
         </Pressable>
+
         {/* Already have an account option */}
-        <Text style={styles.newAccount}>Already have an account?</Text>
+        <Link href={"/Login"} style={styles.newAccount}>
+          Already have an account?
+        </Link>
       </View>
 
       {/* --Login with options-- */}

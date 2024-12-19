@@ -12,9 +12,11 @@ import {
 import { logoimage } from "../SplashScreen";
 import { initialInputFields } from "../../components/Common";
 import { Icons } from "../../components/Common";
+import { useRouter } from "expo-router";
 
 export default function LoginPage() {
   const [inputFields, setInputFields] = useState(initialInputFields);
+  const router = useRouter();
 
   // Handler to update input values
   const handleInputChange = (value: string, index: number) => {
@@ -35,10 +37,8 @@ export default function LoginPage() {
       <View style={styles.inputContainer}>
         {inputFields.map((field, index) => (
           <View key={index} style={styles.inputField}>
-            {/* <Text style={styles.inputLabel}>{field.title}</Text> */}
             <TextInput
               style={styles.textInput}
-              // placeholder={`Enter your ${field.title.toLowerCase()}`}
               placeholder={field.title}
               value={field.input}
               onChangeText={(value) => handleInputChange(value, index)}
@@ -48,16 +48,23 @@ export default function LoginPage() {
         ))}
         {/* ---Forgot password text--- */}
         <Text style={styles.ForgotPassword}>Forgot your password?</Text>
+
         {/* SignIn Button */}
-        <Pressable>
+
+        <Pressable
+          onPress={() => router.push("/HomeScreen")} // Fallback navigation
+        >
           <Text style={[styles.SignInButton, styles.buttonhShadow]}>
             SignIn
           </Text>
         </Pressable>
-        {/* Create new account option--- */}
-        <Text style={styles.newAccount}>Create a new account</Text>
+        {/* Create new account option */}
+        <Pressable
+          onPress={() => router.push("/Registration")} // Fallback navigation
+        >
+          <Text style={styles.newAccount}>Create a new account</Text>
+        </Pressable>
       </View>
-
       {/* --Login with options-- */}
       <View style={styles.continueWithContainer}>
         <Text style={styles.continueWith}> Or continue with</Text>
@@ -149,9 +156,9 @@ const styles = StyleSheet.create({
   },
   newAccount: {
     color: "#626262",
-    paddingTop: 18,
     fontWeight: "bold",
     textAlign: "center",
+    paddingTop: 30,
   },
   continueWithContainer: {
     display: "flex",
