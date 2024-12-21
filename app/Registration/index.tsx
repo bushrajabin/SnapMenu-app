@@ -12,13 +12,13 @@ import { initialInputFields } from "../../components/Common";
 import { Icons } from "../../components/Common";
 import { logoimage } from "../SplashScreen";
 import { Link, useRouter } from "expo-router";
-import { useNavigation } from "expo-router";
+// import { useNavigation } from "expo-router";
 
 export default function Registration() {
   const [inputFields, setInputFields] = useState(
     initialInputFields(true, true)
   );
-  const navigation = useNavigation();
+  // const navigation = useNavigation();
   const router = useRouter();
 
   // Handler to update input values
@@ -44,8 +44,6 @@ export default function Registration() {
 
       <View style={styles.inputContainer}>
         {inputFields.map((field, index) => {
-          console.log(field); // Debugging
-          console.log(field.title);
           return (
             <View key={index} style={styles.inputField}>
               <TextInput
@@ -64,10 +62,11 @@ export default function Registration() {
             </View>
           );
         })}
+
         {/* Sign Up Button */}
 
         <Pressable
-          onPress={() => router.push("/SettingPage")} // Fallback navigation
+          onPress={() => router.push("/SettingPage")} // navigate
         >
           <Text style={[styles.signUpButton, styles.buttonShadow]}>SignUp</Text>
         </Pressable>
@@ -78,7 +77,7 @@ export default function Registration() {
         </Link>
       </View>
 
-      {/* --Login with options-- */}
+      {/* --Login with options or continue with-- */}
       <View style={styles.continueWithContainer}>
         <Text style={styles.continueWith}> Or continue with</Text>
 

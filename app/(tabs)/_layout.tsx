@@ -1,18 +1,11 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Platform } from "react-native";
-
 import { IconSymbol } from "@/components/ui/IconSymbol";
 // import TabBarBackground from "@/components/ui/TabBarBackground";
-import { Colors } from "@/constants/Colors";
-import { useColorScheme } from "@/hooks/useColorScheme";
-
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
 
   return (
-    <Tabs
-    >
+    <Tabs>
       <Tabs.Screen
         name="index"
         options={{
@@ -22,8 +15,38 @@ export default function TabLayout() {
           ),
         }}
       />
-      
-  
+
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="house.fill" color={color} />
+          ),
+        }}
+      />
+
+      {/* Profile Tab */}
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="house.fill" color={color} />
+          ),
+        }}
+      />
+
+      {/* QR Management Tab */}
+      <Tabs.Screen
+        name="qr-management"
+        options={{
+          title: "QR Management",
+          tabBarIcon: ({ color }) => (
+            <IconSymbol size={28} name="house.fill" color={color} />
+          ),
+        }}
+      />
     </Tabs>
   );
 }

@@ -52,7 +52,7 @@ export default function LoginPage() {
         {/* SignIn Button */}
 
         <Pressable
-          onPress={() => router.push("/HomeScreen")} // Fallback navigation
+          onPress={() => router.push("/TableManagementQR")} // Fallback navigation
         >
           <Text style={[styles.SignInButton, styles.buttonhShadow]}>
             SignIn
