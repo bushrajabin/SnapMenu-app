@@ -7,6 +7,7 @@ import {
   ScrollView,
   StyleSheet,
   Modal,
+  Button
 } from "react-native";
 
 export default function TableManagementScreen() {
@@ -45,7 +46,7 @@ export default function TableManagementScreen() {
     <View style={styles.container}>
       <Text style={styles.title}>Table Management & QR</Text>
       {/* Input for table count */}
-      <Text style={styles.addTables}>Add Tables</Text>
+      {/* <Text style={styles.addTables}>Add Tables</Text> */}
       <TextInput
         style={styles.input}
         placeholder="Enter Number of Tables"
@@ -71,7 +72,7 @@ export default function TableManagementScreen() {
         </TouchableOpacity>
       </View>
       {/* Table List */}
-      <Text style={styles.addTables}>Table List</Text>
+      {/* <Text style={styles.addTables}>Table List</Text> */}
       <ScrollView style={styles.tableList}>
         {tableList.map((table, index) => (
           <View key={index} style={styles.tableItem}>
@@ -108,9 +109,10 @@ export default function TableManagementScreen() {
           </View>
         </Modal>
       )}
-      <TouchableOpacity>
-        <Text style={styles.printButton}>Print All QR Codes</Text>
-      </TouchableOpacity>{" "}
+      <View style={styles.printButton}>
+      <Button title="Print All QR Codes" color={"white"}/>
+      </View>
+      
     </View>
   );
 }
@@ -243,8 +245,8 @@ const styles = StyleSheet.create({
     backgroundColor: "black",
     color: "white",
     textAlign: "center",
-    padding: 12,
+    padding: 5,
     borderRadius: 100,
-    fontSize: 16,
+    fontSize: 14,
   },
 });

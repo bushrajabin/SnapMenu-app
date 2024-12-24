@@ -9,6 +9,7 @@ import {
 } from "react-native";
 import { Setting } from "@/components/Common";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { router } from "expo-router";
 
 export default function SettingPage() {
   const [inputFields, setInputFields] = useState(Setting.inputFields);
@@ -78,7 +79,9 @@ export default function SettingPage() {
       </View>
 
       <Pressable>
-        <Text style={styles.saveButton}>Save Changes</Text>
+        <Text style={styles.saveButton} onPress={() => router.push("/AddMenu")}>
+          Save Changes
+        </Text>
       </Pressable>
     </SafeAreaView>
   );
@@ -100,7 +103,7 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff",
     marginBottom: 10,
     width: "100%",
-    paddingLeft:10
+    paddingLeft: 10,
   },
   title: {
     fontSize: 16,
@@ -118,6 +121,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
+
   text: {
     fontSize: 12,
     marginVertical: 10,

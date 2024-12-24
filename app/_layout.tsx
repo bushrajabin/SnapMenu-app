@@ -39,7 +39,8 @@ export default function RootLayout() {
         <Stack.Screen name='Login' options={{title:"Login"}}/>
         <Stack.Screen name='Registration' options={{title:"Registration"}}/>
         <Stack.Screen name='SettingPage' options={{title:"SettingPage"}}/>
-        <Stack.Screen name="HomeScreen" options={{title:"HomeScreen"}}/>
+        <Stack.Screen name='CoverImage' options={{title:"CoverImage"}}/>
+        {/* <Stack.Screen name="HomeScreen" options={{title:"HomeScreen"}}/> */}
       </Stack>
       <StatusBar style="auto" />
     </ThemeProvider>

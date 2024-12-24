@@ -33,7 +33,7 @@ export const Icons = [
 // Settings options
 
 export const Setting = {
-   inputFields:[
+  inputFields: [
     {
       title: "Enter Restaurent Name",
       input: "",
@@ -54,3 +54,24 @@ export const Setting = {
   hours: ["1hours", "2hours", "3hours", "4hours", "5hours", "6hours"],
   day: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 };
+
+// AddMenu fields---
+
+export const addMenu = [
+  {
+    title: "Enter Item Name",
+    input: "",
+  },
+  {
+    title: "Enter Item Description",
+    input: "",
+  },
+  {
+    title: "Enter Item Price",
+    input: "",
+  },
+  // {
+  //   title: "Upload Cover Image",
+  // input:null
+  // },
+];
