@@ -9,7 +9,7 @@ export default function index() {
   // Store the selected image URL
   const [image, setImage] = useState("");
   // visiblity of upload section
-  const [showUploadSection, setShowUploadSection] = useState(false);
+  const [showUploadSection, setShowUploadSection] = useState(true);
   // Preview selected image
   const [previewImage, setPreviewImage] = useState(false);
 
