@@ -7,6 +7,7 @@ const MenuIcon = require("../../assets/images/hamburger.png");
 import { addMenu } from "../../components/Common";
 import { SafeAreaView } from "react-native";
 import { router } from "expo-router";
+import Icon from "react-native-vector-icons/FontAwesome";
 export default function AddMenu() {
   // Toggle Button
   const [isEnabled, setIsEnabled] = useState(false);
@@ -63,6 +64,17 @@ export default function AddMenu() {
             </View>
           );
         })}
+
+        {/* Upload cover image section-- */}
+        <View style={styles.uploadFileField}>
+          <Text style={styles.uploadText}>Upload Cover Image</Text>
+          <TouchableOpacity>
+            <View style={styles.uploadIcon}>
+              <Icon name="upload" size={10} color={"white"} />
+              <Text style={styles.uploadFileText}>Upload File</Text>
+            </View>
+          </TouchableOpacity>
+        </View>
       </View>
 
       {/* Bottom part authentication and buttons----- */}
@@ -78,7 +90,12 @@ export default function AddMenu() {
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Text style={styles.AddButton} onPress={()=>router.push("/CoverImage")}>Add Next Item</Text>
+            <Text
+              style={styles.AddButton}
+              onPress={() => router.push("/CoverImage")}
+            >
+              Add Next Item
+            </Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -152,6 +169,39 @@ const styles = StyleSheet.create({
     color: "black",
     padding: 8,
     fontSize: 14,
+    paddingHorizontal: 20,
+  },
+  uploadFileField: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    width: "90%",
+    margin: "auto",
+    padding: 8,
+    borderRadius: 10,
+    borderColor: "grey",
+    borderWidth: 1,
+    alignItems: "center",
+    marginVertical: 10,
+  },
+  uploadText: {
+    fontSize: 13,
+    paddingHorizontal: 20,
+  },
+  uploadIcon: {
+    backgroundColor: "grey",
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 10,
+    borderRadius: 5,
+    gap:6
+    
+    // letterSpacing:10
+  },
+  uploadFileText:{
+color:"white",
+fontSize:10
   },
   authenticationDiv: {
     display: "flex",
