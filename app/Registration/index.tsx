@@ -12,6 +12,7 @@ import { initialInputFields } from "../../components/Common";
 import { Icons } from "../../components/Common";
 import { logoimage } from "../SplashScreen";
 import { Link, useRouter } from "expo-router";
+import Buttons from "@/components/Buttons";
 // import { useNavigation } from "expo-router";
 
 export default function Registration() {
@@ -31,6 +32,11 @@ export default function Registration() {
   // Handler to send OTP
   const handleSendOtp = () => {
     console.log("Send OTP clicked!");
+  };
+
+  // RegisterSignUp
+  const signUp = () => {
+    router.navigate("/SettingPage");
   };
 
   return (
@@ -64,13 +70,9 @@ export default function Registration() {
         })}
 
         {/* Sign Up Button */}
-
-        <Pressable
-          onPress={() => router.push("/SettingPage")} // navigate
-        >
-          <Text style={[styles.signUpButton, styles.buttonShadow]}>SignUp</Text>
-        </Pressable>
-
+        <View>
+          <Buttons title={"SignUp"} onPress={signUp} />
+        </View>
         {/* Already have an account option */}
         <Link href={"/Login"} style={styles.newAccount}>
           Already have an account?

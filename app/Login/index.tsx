@@ -7,12 +7,14 @@ import {
   Pressable,
   Image,
   SafeAreaView,
+  Alert,
 } from "react-native";
 // import Icon from "react-native-vector-icons/FontAwesome";
 import { logoimage } from "../SplashScreen";
 import { initialInputFields } from "../../components/Common";
 import { Icons } from "../../components/Common";
 import { useRouter } from "expo-router";
+import Buttons from "@/components/Buttons";
 
 export default function LoginPage() {
   const [inputFields, setInputFields] = useState(initialInputFields);
@@ -25,6 +27,11 @@ export default function LoginPage() {
     setInputFields(updatedFields);
   };
 
+  // SIgnup 
+  const signUp=()=>{
+    router.navigate('/TableManagementQR')
+// Alert.alert("i")
+  }
   return (
     <SafeAreaView style={styles.container}>
       {/* Login Top-part */}
@@ -50,14 +57,14 @@ export default function LoginPage() {
         <Text style={styles.ForgotPassword}>Forgot your password?</Text>
 
         {/* SignIn Button */}
+        <View  >
+          <Buttons
+            title={"SignUp"}
+            onPress={signUp}
+          />
+        </View>
+       
 
-        <Pressable
-          onPress={() => router.push("/TableManagementQR")} // Fallback navigation
-        >
-          <Text style={[styles.SignInButton, styles.buttonhShadow]}>
-            SignIn
-          </Text>
-        </Pressable>
         {/* Create new account option */}
         <Pressable
           onPress={() => router.push("/Registration")} // Fallback navigation
@@ -137,22 +144,6 @@ const styles = StyleSheet.create({
     textAlign: "right",
     color: "#1F41BB",
     fontWeight: "bold",
-  },
-  SignInButton: {
-    backgroundColor: "#0B9A55",
-    color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 19,
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 24,
-  },
-  buttonhShadow: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
   },
   newAccount: {
     color: "#626262",
