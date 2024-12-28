@@ -8,6 +8,7 @@ import { addMenu } from "../../components/Common";
 import { SafeAreaView } from "react-native";
 import { router } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
+import BlackBgButtons from "@/components/BlackBgButtons";
 export default function AddMenu() {
   // Toggle Button
   const [isEnabled, setIsEnabled] = useState(false);
@@ -88,15 +89,12 @@ export default function AddMenu() {
           <TouchableOpacity>
             <Text style={styles.doneButton}>Done</Text>
           </TouchableOpacity>
-
-          <TouchableOpacity>
-            <Text
-              style={styles.AddButton}
-              onPress={() => router.push("/CoverImage")}
-            >
-              Add Next Item
-            </Text>
-          </TouchableOpacity>
+          <View>
+            <BlackBgButtons
+              title={"Add Next Item"}
+              onPress={() => router.navigate("/CoverImage")}
+            />
+          </View>
         </View>
       </View>
     </SafeAreaView>
@@ -195,13 +193,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     padding: 10,
     borderRadius: 5,
-    gap:6
-    
+    gap: 6,
+
     // letterSpacing:10
   },
-  uploadFileText:{
-color:"white",
-fontSize:10
+  uploadFileText: {
+    color: "white",
+    fontSize: 10,
   },
   authenticationDiv: {
     display: "flex",
@@ -215,30 +213,21 @@ fontSize:10
     fontSize: 15,
     fontWeight: "bold",
   },
-
   Buttons: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-evenly",
+    justifyContent: "center",
     alignItems: "center",
-    padding: 10,
+    gap:10
   },
   doneButton: {
-    padding: 17,
+    paddingHorizontal:59,
+    paddingVertical:14,
     textAlign: "center",
     fontSize: 16,
     borderRadius: 40,
-    width: 160,
     borderColor: "grey",
     borderWidth: 1,
   },
-  AddButton: {
-    backgroundColor: "black",
-    color: "white",
-    padding: 17,
-    fontSize: 16,
-    borderRadius: 40,
-    width: 160,
-    textAlign: "center",
-  },
+
 });

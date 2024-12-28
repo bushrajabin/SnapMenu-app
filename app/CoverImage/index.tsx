@@ -2,8 +2,9 @@ import React, { useState } from "react";
 import { Alert, StyleSheet, TouchableOpacity } from "react-native";
 import { SafeAreaView, TextInput, View, Text, Image } from "react-native";
 import * as ImagePicker from "expo-image-picker";
-// import { Icon } from "react-native-vector-icons/Icon";
 import Icon from "react-native-vector-icons/FontAwesome";
+import { router } from "expo-router";
+// import BlackBgButtons from "@/components/BlackBgButtons";
 
 export default function index() {
   // Store the selected image URL
@@ -77,6 +78,7 @@ export default function index() {
           Add Item
         </Text>
       </TouchableOpacity>
+
       {/* Preview & Save Buttons---- */}
       <View style={Styles.Buttons}>
         <TouchableOpacity>
@@ -84,7 +86,7 @@ export default function index() {
             Preview
           </Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity  onPress={()=>router.navigate("/OfferDishes")}>
           <Text style={Styles.saveButton}>Save</Text>
         </TouchableOpacity>
       </View>

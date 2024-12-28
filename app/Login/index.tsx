@@ -27,11 +27,11 @@ export default function LoginPage() {
     setInputFields(updatedFields);
   };
 
-  // SIgnup 
-  const signUp=()=>{
-    router.navigate('/TableManagementQR')
-// Alert.alert("i")
-  }
+  // SIgnup
+  const signUp = () => {
+    router.navigate("/TableManagementQR");
+    // Alert.alert("i")
+  };
   return (
     <SafeAreaView style={styles.container}>
       {/* Login Top-part */}
@@ -57,13 +57,9 @@ export default function LoginPage() {
         <Text style={styles.ForgotPassword}>Forgot your password?</Text>
 
         {/* SignIn Button */}
-        <View  >
-          <Buttons
-            title={"SignUp"}
-            onPress={signUp}
-          />
+        <View>
+          <Buttons title={"SignUp"} onPress={signUp} />
         </View>
-       
 
         {/* Create new account option */}
         <Pressable

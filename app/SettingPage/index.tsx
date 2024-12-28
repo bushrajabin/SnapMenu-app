@@ -3,13 +3,13 @@ import {
   View,
   Text,
   StyleSheet,
-  Pressable,
   TextInput,
   Alert,
 } from "react-native";
 import { Setting } from "@/components/Common";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
+import FullWidthButtons from "@/components/FullWidthButtons";
 
 export default function SettingPage() {
   const [inputFields, setInputFields] = useState(Setting.inputFields);
@@ -77,12 +77,10 @@ export default function SettingPage() {
           </View>
         </View>
       </View>
-
-      <Pressable>
-        <Text style={styles.saveButton} onPress={() => router.push("/AddMenu")}>
-          Save Changes
-        </Text>
-      </Pressable>
+      <FullWidthButtons
+        title={"Save Changes"}
+        onPress={() => router.navigate("/AddMenu")}
+      />
     </SafeAreaView>
   );
 }
@@ -121,7 +119,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-
   text: {
     fontSize: 12,
     marginVertical: 10,
@@ -135,15 +132,5 @@ const styles = StyleSheet.create({
     borderStyle: "solid",
     borderWidth: 0.3,
     borderColor: "grey",
-  },
-  saveButton: {
-    backgroundColor: "black",
-    textAlign: "center",
-    color: "white",
-    padding: 13,
-    borderRadius: 30,
-    fontWeight: "bold",
-    fontSize: 14,
-    marginTop: 20,
   },
 });

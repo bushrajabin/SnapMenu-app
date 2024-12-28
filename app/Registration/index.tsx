@@ -70,9 +70,9 @@ export default function Registration() {
         })}
 
         {/* Sign Up Button */}
-        <View>
-          <Buttons title={"SignUp"} onPress={signUp} />
-        </View>
+        {/* <View> */}
+          <Buttons title={"SignUp"}   onPress={signUp} />
+        {/* </View> */}
         {/* Already have an account option */}
         <Link href={"/Login"} style={styles.newAccount}>
           Already have an account?
@@ -147,22 +147,17 @@ const styles = StyleSheet.create({
     color: "#1F41BB",
     fontWeight: "bold",
   },
-  signUpButton: {
-    backgroundColor: "#0B9A55",
-    color: "white",
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: 19,
-    borderRadius: 10,
-    padding: 10,
-    marginTop: 24,
-  },
-  buttonShadow: {
-    shadowColor: "#000",
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.8,
-    shadowRadius: 2,
-  },
+  // signUpButton: {
+  //   backgroundColor: "#0B9A55",
+  //   color: "white",
+  //   textAlign: "center",
+  //   fontWeight: "bold",
+  //   fontSize: 19,
+  //   borderRadius: 10,
+  //   padding: 10,
+  //   marginTop: 24,
+  // },
+
   newAccount: {
     color: "#626262",
     paddingTop: 18,

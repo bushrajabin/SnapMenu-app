@@ -23,11 +23,12 @@ export const initialInputFields = (includeOtp = false, showSendOtp = false) => {
 };
 
 // ICONS for login & registration option options----
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from 'react-native-vector-icons/AntDesign';
+
 export const Icons = [
   <Icon name="google" size={18} />,
-  <Icon name="facebook" size={18} />,
-  <Icon name="apple" size={18} />,
+  <Icon name="facebook-square" size={18} />,
+  <Icon name="apple1" size={18} />,
 ];
 
 // Settings options
@@ -58,6 +59,7 @@ export const Setting = {
 // AddMenu fields---
 
 export const addMenu = [
+
   {
     title: "Enter Item Name",
     input: "",
@@ -74,4 +76,29 @@ export const addMenu = [
   //   title: "Upload Cover Image",
   // input:null
   // },
+];
+
+
+
+// Offer Dish---
+
+
+
+// Offer Dish with Icons
+export const offerDishes = [
+  {
+    title: "Select Dish",
+    input: "",
+    icon: <Icon name="downcircleo" size={18} color="black" />, // Icon for dish selection
+  },
+  {
+    title: "Expiry Date",
+    input: "",
+    icon: <Icon name="calendar" size={18} color="black" />, // Icon for expiry date
+  },
+  {
+    title: "Enter Discount",
+    input: "",
+    icon: <Icon name="tago" size={18} color="black" />, // Icon for discount
+  },
 ];

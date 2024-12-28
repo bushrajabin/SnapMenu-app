@@ -15,18 +15,19 @@ const Styles = StyleSheet.create({
   buttonContainer: {
     display: "flex",
     flexDirection: "row",
-    backgroundColor: "#0B9A55",
     justifyContent: "center",
-    padding: 14,
-    borderRadius: 10,
-    marginTop: 20,
   },
   button: {
     color: "white",
     fontWeight: "bold",
-    fontSize: 16,
-    width: "100%",
+    fontSize: 15,
     textAlign: "center",
+    backgroundColor: "#0B9A55",
+    paddingVertical:14,
+    paddingHorizontal:"41%",
+    borderRadius:10,
+    marginVertical:20
+    
   },
   buttonhShadow: {
     shadowColor: "#000",

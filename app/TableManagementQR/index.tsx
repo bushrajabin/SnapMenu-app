@@ -1,3 +1,5 @@
+import BlackBgButtons from "@/components/BlackBgButtons";
+import { router } from "expo-router";
 import React, { useState } from "react";
 import {
   View,
@@ -6,9 +8,7 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Modal,
-  Button
-} from "react-native";
+  Modal} from "react-native";
 
 export default function TableManagementScreen() {
   const [tableCount, setTableCount] = useState<string>(""); // Input value as a string
@@ -57,19 +57,16 @@ export default function TableManagementScreen() {
       {/* Cancel Button */}
       <View style={styles.buttonContainer}>
         <TouchableOpacity
-          style={styles.cancelButton}
           onPress={() => setTableCount("")}
+          style={styles.cancelButton}
         >
-          <Text style={styles.buttonText}>Cancel</Text>
+          <Text>Cancel</Text>
         </TouchableOpacity>
 
         {/* Generate Button */}
-        <TouchableOpacity
-          style={styles.generateButton}
-          onPress={handleGenerateTables}
-        >
-          <Text style={styles.buttonText}>Generate</Text>
-        </TouchableOpacity>
+        <View>
+          <BlackBgButtons title={"Generate"} onPress={handleGenerateTables} />
+        </View>
       </View>
       {/* Table List */}
       {/* <Text style={styles.addTables}>Table List</Text> */}
@@ -109,10 +106,7 @@ export default function TableManagementScreen() {
           </View>
         </Modal>
       )}
-      <View style={styles.printButton}>
-      <Button title="Print All QR Codes" color={"white"}/>
-      </View>
-      
+      <BlackBgButtons title={"Print All QR Codes"}/>
     </View>
   );
 }
@@ -133,12 +127,12 @@ const styles = StyleSheet.create({
   addTables: {
     textDecorationLine: "underline",
     backgroundColor: "whitesmoke",
-    padding:5,
-    width:100,
-    marginVertical:10,
-    textAlign:'center',
-    borderRadius:5,
-    fontSize:12
+    padding: 5,
+    width: 100,
+    marginVertical: 10,
+    textAlign: "center",
+    borderRadius: 5,
+    fontSize: 12,
   },
   input: {
     borderWidth: 1,
@@ -148,29 +142,21 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   buttonContainer: {
+    display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "space-around",
+    alignItems: "center",
     marginBottom: 20,
   },
   cancelButton: {
-    flex: 1,
     backgroundColor: "#f0f0f0",
-    padding: 10,
     alignItems: "center",
-    borderRadius: 5,
-    marginRight: 5,
-  },
-  generateButton: {
-    flex: 1,
-    backgroundColor: "#000",
-    padding: 10,
-    alignItems: "center",
-    borderRadius: 5,
-    marginLeft: 5,
-  },
-  buttonText: {
-    color: "#fff",
+    borderRadius: 100,
+    borderColor: "grey",
+    borderWidth: 2,
     fontWeight: "bold",
+    paddingHorizontal: 45,
+    paddingVertical: 15,
   },
   tableList: {
     marginTop: 10,
@@ -240,13 +226,5 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: "red",
     fontWeight: "bold",
-  },
-  printButton: {
-    backgroundColor: "black",
-    color: "white",
-    textAlign: "center",
-    padding: 5,
-    borderRadius: 100,
-    fontSize: 14,
-  },
+  }
 });
