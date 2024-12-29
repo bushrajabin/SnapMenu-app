@@ -115,6 +115,8 @@ export default function index() {
 const Styles = StyleSheet.create({
   mainContainer: {
     backgroundColor: "white",
+    height:"100%",
+    flex:1
   },
   menuInput: {
     padding: 15,
@@ -182,11 +184,12 @@ const Styles = StyleSheet.create({
     marginVertical: 20,
     backgroundColor: "black",
     color: "white",
-    padding: 15,
+    paddingHorizontal:10,
+    paddingVertical:17,
     fontSize: 13,
     borderRadius: 40,
-    width: 100,
     textAlign: "center",
+    marginHorizontal:"30%",
   },
   Buttons: {
     display: "flex",
@@ -194,7 +197,8 @@ const Styles = StyleSheet.create({
     justifyContent: "space-evenly",
     alignItems: "center",
     padding: 10,
-    paddingBottom: 90,
+    paddingVertical:60
+    // paddingBottom: 90,
   },
   previewButton: {
     padding: 15,

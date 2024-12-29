@@ -1,93 +1,137 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, Switch, TextInput } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  TextInput,
+  TouchableOpacity,
+  SafeAreaView,
+  Alert,
+} from "react-native";
 import { logoimage } from "../SplashScreen";
-import { TouchableOpacity } from "react-native";
-import { useState } from "react";
-const MenuIcon = require("../../assets/images/hamburger.png");
 import { addMenu } from "../../components/Common";
-import { SafeAreaView } from "react-native";
 import { router } from "expo-router";
 import Icon from "react-native-vector-icons/FontAwesome";
 import BlackBgButtons from "@/components/BlackBgButtons";
+const MenuIcon = require("../../assets/images/hamburger.png");
+import * as ImagePicker from "expo-image-picker";
+
 export default function AddMenu() {
   // Toggle Button
   const [isEnabled, setIsEnabled] = useState(false);
   const [text, setText] = useState("");
   const [menuFields, setMenuFields] = useState(addMenu);
-  // conditionally ON OFF
-  const toggleSwitch = () => {
-    if (isEnabled) {
-      setText("OFF");
-    } else {
-      setText("ON");
-    }
-    setIsEnabled((previousState) => !previousState);
-  };
+  const [menuName, setMenuName] = useState("");
+  const [category, setCategory] = useState("");
+  const [image, setImage] = useState(null);
 
-  //for input changes
+  // Radio Button State
+  const [selectedDishType, setSelectedDishType] = useState("Veg");
+
+  // Input Change Handler
   const handleInputChange = (text: string, index: number) => {
     const updatedFields = [...menuFields];
     updatedFields[index].input = text;
     setMenuFields(updatedFields);
   };
 
-  return (
-    <SafeAreaView style={styles.MenuMainContainer}>
-      <View style={styles.TopContainer}>
-        <Image source={logoimage} style={styles.logoImage} />
+  // Upload Image
+  const uploadImage = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+    if (!result.canceled) {
+      setImage(result.assets[0].uri);
+      console.log(result);
+    } else {
+      alert("You did not choose any image");
+    }
+  };
 
-        <View style={styles.manuIconDiv}>
-          <Image source={MenuIcon} style={styles.menuIconImage} />
+  return (
+    <SafeAreaView style={Styles.MenuMainContainer}>
+      {/* Top Section */}
+      <View style={Styles.TopContainer}>
+        <Image source={logoimage} style={Styles.logoImage} />
+        <View style={Styles.manuIconDiv}>
+          <Image source={MenuIcon} style={Styles.menuIconImage} />
         </View>
       </View>
-
-      {/* Menu Name Top---- */}
-      <View>
-        <Text style={styles.menuName}>Menu Name</Text>
+      {/* Menu Name */}
+      <View style={Styles.menuName}>
+        <TextInput
+          placeholder="Menu Name"
+          value={menuName}
+          onChangeText={(text) => setMenuName(text)}
+        />
       </View>
-
-      {/* Category field---- */}
-      <View>
-        <Text style={styles.categoryField}>Category 1</Text>
+      {/* Category */}
+      <View style={Styles.categoryField}>
+        <TextInput
+          placeholder="Category"
+          value={category}
+          onChangeText={(text) => setCategory(text)}
+        />
       </View>
-
       {/* Add Menu Input Fields */}
       <View>
-        {menuFields.map((fields, index, arr) => {
-          return (
-            <View key={index} style={styles.inputDiv}>
-              <TextInput
-                placeholder={fields.title}
-                value={fields.input}
-                style={styles.inputField}
-                onChangeText={(text) => handleInputChange(text, index)}
-              />
-            </View>
-          );
-        })}
+        {menuFields.map((fields, index) => (
+          <View key={index} style={Styles.inputDiv}>
+            <TextInput
+              placeholder={fields.title}
+              value={fields.input}
+              style={Styles.inputField}
+              onChangeText={(text) => handleInputChange(text, index)}
+            />
+          </View>
+        ))}
 
-        {/* Upload cover image section-- */}
-        <View style={styles.uploadFileField}>
-          <Text style={styles.uploadText}>Upload Cover Image</Text>
-          <TouchableOpacity>
-            <View style={styles.uploadIcon}>
-              <Icon name="upload" size={10} color={"white"} />
-              <Text style={styles.uploadFileText}>Upload File</Text>
-            </View>
-          </TouchableOpacity>
+        {/* Dish Type Radio Buttons */}
+        <View style={Styles.radioContainer}>
+          <Text style={Styles.radioHeader}>Select Dish Type:</Text>
+          {["Veg", "Non-Veg", "Egg"].map((option) => (
+            <TouchableOpacity
+              key={option}
+              style={Styles.radioButtonContainer}
+              onPress={() => setSelectedDishType(option)}
+            >
+              <View style={Styles.radioButton}>
+                {selectedDishType === option && (
+                  <View style={Styles.radioButtonSelected} />
+                )}
+              </View>
+              <Text>{option}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+
+        {/* Upload Cover Image */}
+        <View style={Styles.uploadFileField}>
+          {image ? (
+            <Image source={{ uri: image }} style={Styles.displayImage} />
+          ) : (
+            <>
+              <Text style={Styles.uploadText}>Upload Cover Image</Text>
+              <TouchableOpacity onPress={uploadImage}>
+                <View style={Styles.uploadIcon}>
+                  <Icon name="upload" size={10} color={"white"} />
+                  <Text style={Styles.uploadFileText}>Upload File</Text>
+                </View>
+              </TouchableOpacity>
+            </>
+          )}
         </View>
       </View>
 
-      {/* Bottom part authentication and buttons----- */}
+      {/* Bottom Section */}
       <View>
-        <View style={styles.authenticationDiv}>
-          <Text style={styles.authenticationText}>Require Authentication</Text>
-          <Switch onValueChange={toggleSwitch} value={isEnabled} />
-        </View>
-
-        <View style={styles.Buttons}>
+        <View style={Styles.Buttons}>
           <TouchableOpacity>
-            <Text style={styles.doneButton}>Done</Text>
+            <Text style={Styles.doneButton}>Done</Text>
           </TouchableOpacity>
           <View>
             <BlackBgButtons
@@ -101,7 +145,7 @@ export default function AddMenu() {
   );
 }
 
-const styles = StyleSheet.create({
+const Styles = StyleSheet.create({
   MenuMainContainer: {
     flex: 1,
     backgroundColor: "white",
@@ -132,12 +176,11 @@ const styles = StyleSheet.create({
   menuName: {
     backgroundColor: "whitesmoke",
     textDecorationLine: "underline",
-    textAlign: "center",
     alignItems: "center",
-    width: "50%",
-    padding: 10,
-    justifyContent: "center",
-    margin: "auto",
+    paddingVertical: 10,
+    paddingHorizontal: 10,
+    marginHorizontal: 70,
+    marginVertical: 25,
     fontSize: 18,
     letterSpacing: 2,
     borderRadius: 10,
@@ -145,12 +188,11 @@ const styles = StyleSheet.create({
   categoryField: {
     backgroundColor: "whitesmoke",
     textDecorationLine: "underline",
-    textAlign: "center",
-    alignItems: "center",
-    width: "50%",
-    padding: 10,
-    marginHorizontal: 10,
-    marginVertical: 30,
+    marginLeft: 5,
+    marginHorizontal: "50%",
+    marginBottom: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 10,
     fontSize: 18,
     borderRadius: 10,
   },
@@ -169,12 +211,40 @@ const styles = StyleSheet.create({
     fontSize: 14,
     paddingHorizontal: 20,
   },
-  uploadFileField: {
+  radioContainer: {
+    marginHorizontal: 20,
+    marginVertical: 10,
     display: "flex",
+    flexDirection: "row",
+    gap: 7,
+  },
+  radioHeader: {
+    fontSize: 16,
+  },
+  radioButtonContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+  },
+  radioButton: {
+    height: 20,
+    width: 20,
+    borderRadius: 10,
+    borderWidth: 2,
+    borderColor: "gray",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  radioButtonSelected: {
+    height: 12,
+    width: 12,
+    borderRadius: 6,
+    backgroundColor: "gray",
+  },
+  uploadFileField: {
     flexDirection: "row",
     justifyContent: "space-between",
     width: "90%",
-    margin: "auto",
+    marginHorizontal: 20,
     padding: 8,
     borderRadius: 10,
     borderColor: "grey",
@@ -188,46 +258,35 @@ const styles = StyleSheet.create({
   },
   uploadIcon: {
     backgroundColor: "grey",
-    display: "flex",
     flexDirection: "row",
     alignItems: "center",
     padding: 10,
     borderRadius: 5,
     gap: 6,
-
-    // letterSpacing:10
   },
   uploadFileText: {
     color: "white",
     fontSize: 10,
   },
-  authenticationDiv: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-  },
-  authenticationText: {
-    fontSize: 15,
-    fontWeight: "bold",
-  },
   Buttons: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
-    gap:10
+    gap: 10,
   },
   doneButton: {
-    paddingHorizontal:59,
-    paddingVertical:14,
+    paddingHorizontal: 59,
+    paddingVertical: 14,
     textAlign: "center",
     fontSize: 16,
     borderRadius: 40,
     borderColor: "grey",
     borderWidth: 1,
   },
-
+  displayImage: {
+    width: 100,
+    height: 70,
+    alignSelf: "center",
+    borderRadius: 6,
+  },
 });

@@ -9,13 +9,14 @@ import {
 } from "react-native";
 import { offerDishes } from "@/components/Common";
 import FullWidthButtons from "@/components/FullWidthButtons";
-import DateTimePicker from "react-native-ui-datepicker";
-import dayjs from "dayjs";
+import { router } from "expo-router";
+// import DateTimePicker from "react-native-ui-datepicker";
+// import dayjs from "dayjs";
 
 export default function OfferDishes() {
   const [values, setValues] = useState(offerDishes);
-  const [date, setDate] = useState(dayjs());
-  const [showDatePicker, setShowDatePicker] = useState(false);
+  // const [date, setDate] = useState(dayjs());
+  // const [showDatePicker, setShowDatePicker] = useState(false);
 
   const handleInputChanges = (text, index) => {
     const updatedFields = [...values];
@@ -23,12 +24,12 @@ export default function OfferDishes() {
     setValues(updatedFields);
   };
 
-  const handleDateSelection = (selectedDate: number) => {
-    const updatedFields = [...values];
-    updatedFields[1].input = dayjs(selectedDate).format("YYYY-MM-DD"); // Format date as needed
-    setValues(updatedFields);
-    setShowDatePicker(false); // Close the date picker
-  };
+  // const handleDateSelection = (selectedDate: number) => {
+  //   const updatedFields = [...values];
+  //   updatedFields[1].input = dayjs(selectedDate).format("YYYY-MM-DD"); // Format date as needed
+  //   setValues(updatedFields);
+  //   setShowDatePicker(false); // Close the date picker
+  // };
 
   return (
     <SafeAreaView style={Styles.container}>
@@ -39,14 +40,12 @@ export default function OfferDishes() {
               value={fields.input}
               placeholder={fields.title}
               onChangeText={(text) => handleInputChanges(text, index)}
-              editable={fields.title !== "Expiry Date"} // Disable manual input for Expiry Date
             />
             {fields.icon && (
               <Pressable
-                style={Styles.icon}
-                onPress={() =>
-                  fields.title === "Expiry Date" && setShowDatePicker(true)
-                }
+              // onPress={() =>
+              //   fields.title === "Expiry Date" && setShowDatePicker(true)
+              // }
               >
                 {fields.icon}
               </Pressable>
@@ -56,11 +55,14 @@ export default function OfferDishes() {
       </View>
 
       <View style={Styles.buttonContainer}>
-        <FullWidthButtons title={"Add to Offer"} />
+        <FullWidthButtons
+          title={"Add to Offer"}
+          onPress={() => router.navigate("/SpecialOffers")}
+        />
       </View>
 
       {/* Show Date Picker When Icon is Clicked */}
-      {showDatePicker && (
+      {/* {showDatePicker && (
         <DateTimePicker
           mode="single"
           date={date}
@@ -69,7 +71,7 @@ export default function OfferDishes() {
             handleDateSelection(params.date); // Update the Expiry Date field
           }}
         />
-      )}
+      )} */}
     </SafeAreaView>
   );
 }
@@ -85,9 +87,9 @@ const Styles = StyleSheet.create({
   },
   commonInputDiv: {
     backgroundColor: "whitesmoke",
-    flexDirection: "row",
-    paddingVertical: 15,
     paddingHorizontal: 20,
+    display: "flex",
+    flexDirection: "row",
     marginVertical: 10,
     marginHorizontal: 20,
     borderWidth: 1,
@@ -96,9 +98,8 @@ const Styles = StyleSheet.create({
     borderStyle: "solid",
     justifyContent: "space-between",
     alignItems: "center",
-  },
-  icon: {
-    marginLeft: 10,
+    fontSize: 15,
+    padding: 10,
   },
   buttonContainer: {
     padding: 10,

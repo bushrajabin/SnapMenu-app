@@ -89,16 +89,16 @@ export const offerDishes = [
   {
     title: "Select Dish",
     input: "",
-    icon: <Icon name="downcircleo" size={18} color="black" />, // Icon for dish selection
+    icon: <Icon name="downcircleo" size={12} color="black" />, // Icon for dish selection
   },
   {
     title: "Expiry Date",
     input: "",
-    icon: <Icon name="calendar" size={18} color="black" />, // Icon for expiry date
+    icon: <Icon name="calendar" size={12} color="black" />, // Icon for expiry date
   },
   {
     title: "Enter Discount",
     input: "",
-    icon: <Icon name="tago" size={18} color="black" />, // Icon for discount
+    icon: <Icon name="tago" size={12} color="black" />, // Icon for discount
   },
 ];

@@ -28,10 +28,10 @@ export default function LoginPage() {
   };
 
   // SIgnup
-  const signUp = () => {
-    router.navigate("/TableManagementQR");
-    // Alert.alert("i")
-  };
+  // const signUp = () => {
+  //   router.navigate("/TableManagementQR");
+  //   // Alert.alert("i")
+  // };
   return (
     <SafeAreaView style={styles.container}>
       {/* Login Top-part */}
@@ -58,7 +58,7 @@ export default function LoginPage() {
 
         {/* SignIn Button */}
         <View>
-          <Buttons title={"SignUp"} onPress={signUp} />
+          <Buttons title={"SignUp"} onPress={()=>router.navigate("/HomePage")} />
         </View>
 
         {/* Create new account option */}
