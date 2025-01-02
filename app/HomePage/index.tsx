@@ -1,25 +1,38 @@
 import BlackBgButtons from "@/components/BlackBgButtons";
 import { router } from "expo-router";
-import React from "react";
-import { SafeAreaView, Text, View, Image } from "react-native";
+import React, { useState } from "react";
+import { SafeAreaView, Text, View, Image, Alert } from "react-native";
 const MenuIcon = require("../../assets/images/hamburger.png");
 import { logoimage } from "../SplashScreen";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
+import SideBar from "@/components/SideBar";
 
-export default function index() {
+export default function Index() {
+  const [isSidebarVisible, setSidebarVisible] = useState(false);
+
+  const toggleMenu = () => {
+    setSidebarVisible(!isSidebarVisible);
+  };
+
   return (
     <SafeAreaView style={Styles.container}>
       <View>
         <View style={Styles.TopContainer}>
           <Image source={logoimage} style={Styles.logoImage} />
-          <View style={Styles.manuIconDiv}>
+          <TouchableOpacity style={Styles.manuIconDiv} onPress={toggleMenu}>
             <Image source={MenuIcon} style={Styles.menuIconImage} />
-          </View>
+          </TouchableOpacity>
         </View>
         <View>
           <Text style={Styles.Text}>Available Menus</Text>
         </View>
+
+        {isSidebarVisible && (
+          <View>
+            <SideBar />
+          </View>
+        )}
 
         <TouchableOpacity style={Styles.button}>
           <BlackBgButtons
@@ -35,7 +48,6 @@ export default function index() {
 const Styles = StyleSheet.create({
   container: {
     backgroundColor: "white",
-    // height: "100%",
     flex: 1,
   },
   TopContainer: {
@@ -71,8 +83,8 @@ const Styles = StyleSheet.create({
     letterSpacing: 2,
   },
   button: {
-    marginVertical:100,
-    paddingHorizontal:100,
-    paddingVertical:"81%",
+    marginVertical: 100,
+    paddingHorizontal: 100,
+    paddingVertical: "81%",
   },
 });

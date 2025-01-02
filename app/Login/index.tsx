@@ -58,7 +58,10 @@ export default function LoginPage() {
 
         {/* SignIn Button */}
         <View>
-          <Buttons title={"SignUp"} onPress={()=>router.navigate("/HomePage")} />
+          <Buttons
+            title={"SignUp"}
+            onPress={() => router.navigate("/RegisterRestaurant")}
+          />
         </View>
 
         {/* Create new account option */}

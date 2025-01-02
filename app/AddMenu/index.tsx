@@ -18,13 +18,11 @@ const MenuIcon = require("../../assets/images/hamburger.png");
 import * as ImagePicker from "expo-image-picker";
 
 export default function AddMenu() {
-  // Toggle Button
-  const [isEnabled, setIsEnabled] = useState(false);
   const [text, setText] = useState("");
   const [menuFields, setMenuFields] = useState(addMenu);
   const [menuName, setMenuName] = useState("");
   const [category, setCategory] = useState("");
-  const [image, setImage] = useState(null);
+  const [image, setImage] = useState("");
 
   // Radio Button State
   const [selectedDishType, setSelectedDishType] = useState("Veg");

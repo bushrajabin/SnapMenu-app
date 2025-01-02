@@ -23,7 +23,7 @@ export const initialInputFields = (includeOtp = false, showSendOtp = false) => {
 };
 
 // ICONS for login & registration option options----
-import Icon from 'react-native-vector-icons/AntDesign';
+import Icon from "react-native-vector-icons/AntDesign";
 
 export const Icons = [
   <Icon name="google" size={18} />,
@@ -59,7 +59,6 @@ export const Setting = {
 // AddMenu fields---
 
 export const addMenu = [
-
   {
     title: "Enter Item Name",
     input: "",
@@ -78,11 +77,7 @@ export const addMenu = [
   // },
 ];
 
-
-
 // Offer Dish---
-
-
 
 // Offer Dish with Icons
 export const offerDishes = [
@@ -100,5 +95,51 @@ export const offerDishes = [
     title: "Enter Discount",
     input: "",
     icon: <Icon name="tago" size={12} color="black" />, // Icon for discount
+  },
+];
+
+// ----SideBar----
+
+export const SideBarItems = [
+  {
+    icon: <Icon name="home" size={25} color={"white"} />,
+    title: "Home",
+  },
+  {
+    icon: <Icon name="qrcode" size={25} color={"white"} />,
+    title: "QR-code",
+  },
+  {
+    icon: <Icon name="home" size={25} color={"white"} />,
+    title: "Orders",
+  },
+  {
+    icon: <Icon name="home" size={25} color={"white"} />,
+    title: "Payment",
+  },
+  {
+    icon: <Icon name="question" size={25} color={"white"} />,
+    title: "Contact-us",
+  },
+  {
+    icon: <Icon name="setting" size={25} color={"white"} />,
+    title: "Restaurant settings",
+  },
+];
+
+// RegisterRestaurent
+
+export const Register = [
+  {
+    title: "Enter Your Name",
+    input: "",
+  },
+  {
+    title: "Enter Restaurant Name",
+    input: "",
+  },
+  {
+    title: "Enter city",
+    input: "",
   },
 ];
