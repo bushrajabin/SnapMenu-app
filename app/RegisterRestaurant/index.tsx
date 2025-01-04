@@ -1,8 +1,16 @@
 import React, { useState } from "react";
-import { View, SafeAreaView, Text, TextInput, StyleSheet } from "react-native";
+import {
+  View,
+  SafeAreaView,
+  Text,
+  TextInput,
+  StyleSheet,
+  Alert,
+} from "react-native";
 import { Register } from "@/components/Common";
 import { TouchableOpacity } from "react-native";
 import BlackBgButtons from "@/components/BlackBgButtons";
+import { router } from "expo-router";
 
 export default function RegisterRestaurant() {
   const [inputFields, setInputFields] = useState(Register);
@@ -11,6 +19,20 @@ export default function RegisterRestaurant() {
     const updatedFields = [...inputFields];
     updatedFields[index].input = value;
     setInputFields(updatedFields);
+  };
+
+  //   home pageee
+  const toHomePage = () => {
+    // Check if all fields are filled
+    const allFieldsFilled = inputFields.every(
+      (field) => field.input.trim() !== ""
+    );
+
+    if (allFieldsFilled) {
+      router.navigate("/HomePage");
+    } else {
+      Alert.alert("Error", "Please fill in all fields.");
+    }
   };
 
   return (
@@ -33,8 +55,7 @@ export default function RegisterRestaurant() {
           );
         })}
         <TouchableOpacity style={Styles.button}>
-          {" "}
-          <BlackBgButtons title={"Get Started"}/>
+          <BlackBgButtons title={"Get Started"} onPress={toHomePage} />
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -73,6 +94,6 @@ const Styles = StyleSheet.create({
   },
   button: {
     marginHorizontal: 100,
-    marginTop:90
+    marginTop: 90,
   },
 });
