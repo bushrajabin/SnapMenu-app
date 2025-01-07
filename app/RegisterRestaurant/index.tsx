@@ -22,18 +22,16 @@ export default function RegisterRestaurant() {
   };
 
   //   home pageee
-  const toHomePage = () => {
-    // Check if all fields are filled
-    const allFieldsFilled = inputFields.every(
-      (field) => field.input.trim() !== ""
-    );
+  // const toHomePage = () => {
+  //   // Check if all fields are filled
+  //   const allFieldsFilled = inputFields.every((field) => field.input.trim());
 
-    if (allFieldsFilled) {
-      router.navigate("/HomePage");
-    } else {
-      Alert.alert("Error", "Please fill in all fields.");
-    }
-  };
+  //   if (inputFields) {
+  //     Alert.alert("Error", "Please fill in all fields.");
+  //   } else {
+  //     router.navigate("/HomePage");
+  //   }
+  // };
 
   return (
     <SafeAreaView style={Styles.container}>
@@ -55,7 +53,11 @@ export default function RegisterRestaurant() {
           );
         })}
         <TouchableOpacity style={Styles.button}>
-          <BlackBgButtons title={"Get Started"} onPress={toHomePage} />
+          <BlackBgButtons
+            title={"Get Started"}
+            onPress={() => router.navigate("/HomePage")}
+          />
+          {/* <BlackBgButtons title={"Get Started"} /> */}
         </TouchableOpacity>
       </View>
     </SafeAreaView>

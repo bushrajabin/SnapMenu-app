@@ -50,6 +50,17 @@ export default function AddMenu() {
     }
   };
 
+  // Done Button after fill the values--
+
+  const DoneMenu = () => {
+    const allFields = menuFields.every((field) => field.input.trim());
+    if (!allFields) {
+      Alert.alert("filled all the values!!");
+    } else {
+      // Alert.alert("filled all the valuesfff!!");
+      router.navigate("/HomePage");
+    }
+  };
   return (
     <SafeAreaView style={Styles.MenuMainContainer}>
       {/* Top Section */}
@@ -129,12 +140,14 @@ export default function AddMenu() {
       <View>
         <View style={Styles.Buttons}>
           <TouchableOpacity>
-            <Text style={Styles.doneButton}>Done</Text>
+            <Text style={Styles.doneButton} onPress={DoneMenu}>
+              Done
+            </Text>
           </TouchableOpacity>
           <View>
             <BlackBgButtons
-              title={"Add Next Item"}
-              onPress={() => router.navigate("/CoverImage")}
+              title={"Add Item"}
+              onPress={() => router.navigate("/AddMenu")}
             />
           </View>
         </View>

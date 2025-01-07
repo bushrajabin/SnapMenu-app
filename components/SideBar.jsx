@@ -1,23 +1,38 @@
 import React from "react";
-import { SafeAreaView, Text, StyleSheet, View, Image } from "react-native";
+import {
+  SafeAreaView,
+  Text,
+  StyleSheet,
+  View,
+  Image,
+  TouchableOpacity,
+} from "react-native";
 import { SideBarItems } from "./Common";
 import { logoimage } from "@/app/SplashScreen";
-import { TouchableOpacity } from "react-native";
+import { Link, router } from "expo-router";
 
 export default function SideBar() {
   return (
-    <SafeAreaView style={Styles.container}>
-      <View style={Styles.text}>
+    <SafeAreaView>
+      <View style={Styles.sidebarContent}>
         <Image source={logoimage} style={Styles.logoImage} />
-        {SideBarItems.map((items, index) => (
-          <View key={index} style={Styles.iconDiv}>
-            <View style={Styles.icons}>{items.icon}</View>
-            <Text style={Styles.text}>{items.title}</Text>
-          </View>
+        {SideBarItems.map((item, index) => (
+          <TouchableOpacity
+            key={index}
+            onPress={() => {
+              if (item.link) {
+                router.navigate(`${item.link}`);
+              } else {
+                console.log(`No link provided${item.title}`);
+              }
+            }}
+          >
+            {item.icon}
+            <Text>{item.title}</Text>
+          </TouchableOpacity>
         ))}
-
-        <TouchableOpacity>
-          <Text>Log Out</Text>
+        <TouchableOpacity style={Styles.logoutButton}>
+          <Text style={Styles.logoutText}>Log Out</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -25,36 +40,45 @@ export default function SideBar() {
 }
 
 const Styles = StyleSheet.create({
-  container: {
-    backgroundColor: "red",
-    width: "60%",
-    // height: "100%",
-  },
-  iconDiv: {
-    // backgroundColor: "green",
+  sidebarContent: {
+    backgroundColor: "yellow",
     display: "flex",
-    flexDirection: "row",
-    alignItems: "center",
-    padding: 10,
+    flexDirection: "column",
+    // flex:1
   },
   logoImage: {
-    width: "100%",
     height: 80,
-    objectFit: "contain",
-    backgroundColor: "green",
+    width: 80,
+    resizeMode: "contain",
+    // marginBottom: 20,
   },
-  icons: {
+  iconDiv: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "red",
+  },
+  iconWrapper: {
     backgroundColor: "green",
     borderRadius: 100,
-    paddingHorizontal: 8,
-    paddingVertical: 8,
+    padding: 7,
   },
-  text: {
+  iconText: {
+    textAlign: "center",
     color: "black",
-    backgroundColor: "yellow",
+    fontSize: 16,
+    fontWeight: "400",
     textDecorationLine: "underline",
-    fontSize: 20,
-    fontWeight: "300",
+  },
+  logoutButton: {
+    marginTop: 30,
+    paddingVertical: 10,
     paddingHorizontal: 20,
+    backgroundColor: "black",
+    borderRadius: 5,
+  },
+  logoutText: {
+    color: "white",
+    fontSize: 16,
+    fontWeight: "600",
   },
 });

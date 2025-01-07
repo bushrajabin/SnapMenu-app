@@ -22,6 +22,7 @@ export const initialInputFields = (includeOtp = false, showSendOtp = false) => {
   return fields;
 };
 
+import { Link } from "expo-router";
 // ICONS for login & registration option options----
 import Icon from "react-native-vector-icons/AntDesign";
 
@@ -102,28 +103,31 @@ export const offerDishes = [
 
 export const SideBarItems = [
   {
-    icon: <Icon name="home" size={25} color={"white"} />,
+    icon: <Icon name="home" size={20} color={"white"} />,
     title: "Home",
+    link: "/HomePage",
   },
   {
-    icon: <Icon name="qrcode" size={25} color={"white"} />,
+    icon: <Icon name="qrcode" size={20} color={"white"} />,
     title: "QR-code",
+    link: "/OfferDishes",
   },
   {
-    icon: <Icon name="home" size={25} color={"white"} />,
+    icon: <Icon name="filetext1" size={20} color={"white"} />,
     title: "Orders",
   },
   {
-    icon: <Icon name="home" size={25} color={"white"} />,
+    icon: <Icon name="creditcard" size={20} color={"white"} />,
     title: "Payment",
   },
   {
-    icon: <Icon name="question" size={25} color={"white"} />,
+    icon: <Icon name="question" size={20} color={"white"} />,
     title: "Contact-us",
   },
   {
-    icon: <Icon name="setting" size={25} color={"white"} />,
+    icon: <Icon name="setting" size={20} color={"white"} />,
     title: "Restaurant settings",
+    link: "/RestaurantSettingPage",
   },
 ];
 
@@ -141,5 +145,22 @@ export const Register = [
   {
     title: "Enter city",
     input: "",
+  },
+];
+
+// Restaurent setting---
+export const RestaurentSetting = [
+  {
+    title: "Table Settings",
+    Icon: <Icon name="right" size={23} />,
+    link:"/TableManagementQR"
+  },
+  {
+    title: "Manager Members",
+    Icon: <Icon name="right" size={23} />,
+  },
+  {
+    title: "In-House Delivery",
+    Icon: <Icon name="right" size={23} />,
   },
 ];

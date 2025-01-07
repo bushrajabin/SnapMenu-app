@@ -8,7 +8,7 @@ import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native";
 import SideBar from "@/components/SideBar";
 
-export default function Index() {
+export default function HomePage() {
   const [isSidebarVisible, setSidebarVisible] = useState(false);
 
   const toggleMenu = () => {
