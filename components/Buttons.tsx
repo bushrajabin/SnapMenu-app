@@ -23,11 +23,10 @@ const Styles = StyleSheet.create({
     fontSize: 15,
     textAlign: "center",
     backgroundColor: "#0B9A55",
-    paddingVertical:14,
-    paddingHorizontal:"41%",
-    borderRadius:10,
-    marginVertical:20
-    
+    paddingVertical: 14,
+    paddingHorizontal: "41%",
+    borderRadius: 10,
+    marginVertical: 20,
   },
   buttonhShadow: {
     shadowColor: "#000",

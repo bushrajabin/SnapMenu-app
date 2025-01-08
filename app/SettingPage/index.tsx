@@ -9,7 +9,7 @@ import {
 import { Setting } from "@/components/Common";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { router } from "expo-router";
-import FullWidthButtons from "@/components/FullWidthButtons";
+import BlackBgButtons from "@/components/BlackBgButtons";
 
 export default function SettingPage() {
   const [inputFields, setInputFields] = useState(Setting.inputFields);
@@ -77,7 +77,7 @@ export default function SettingPage() {
           </View>
         </View>
       </View>
-      <FullWidthButtons
+      <BlackBgButtons
         title={"Save Changes"}
         onPress={() => router.navigate("/AddMenu")}
       />

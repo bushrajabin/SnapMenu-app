@@ -7,6 +7,7 @@ import {
   TextInput,
   Pressable,
   Image,
+  Alert,
 } from "react-native";
 import { initialInputFields } from "../../components/Common";
 import { Icons } from "../../components/Common";
@@ -31,14 +32,8 @@ export default function Registration() {
 
   // Handler to send OTP
   const handleSendOtp = () => {
-    console.log("Send OTP clicked!");
+    Alert.alert("Send OTP on your email!");
   };
-
-  // RegisterSignUp
-  const signUp = () => {
-    router.navigate("/SettingPage");
-  };
-
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.textContainer}>
@@ -71,7 +66,7 @@ export default function Registration() {
 
         {/* Sign Up Button */}
         {/* <View> */}
-          <Buttons title={"SignUp"}   onPress={signUp} />
+          <Buttons title={"SignUp"} onPress={()=>router.navigate('/HomePage')} />
         {/* </View> */}
         {/* Already have an account option */}
         <Link href={"/Login"} style={styles.newAccount}>

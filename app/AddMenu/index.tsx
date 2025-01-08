@@ -139,17 +139,12 @@ export default function AddMenu() {
       {/* Bottom Section */}
       <View>
         <View style={Styles.Buttons}>
-          <TouchableOpacity>
-            <Text style={Styles.doneButton} onPress={DoneMenu}>
-              Done
-            </Text>
-          </TouchableOpacity>
-          <View>
-            <BlackBgButtons
-              title={"Add Item"}
-              onPress={() => router.navigate("/AddMenu")}
-            />
-          </View>
+          <BlackBgButtons title={"Done"} />
+
+          <BlackBgButtons
+            title={"Add Item"}
+            onPress={() => router.navigate("/AddMenu")}
+          />
         </View>
       </View>
     </SafeAreaView>
@@ -280,19 +275,11 @@ const Styles = StyleSheet.create({
     fontSize: 10,
   },
   Buttons: {
+    display:"flex",
     flexDirection: "row",
-    justifyContent: "center",
+    justifyContent:"space-evenly",
     alignItems: "center",
     gap: 10,
-  },
-  doneButton: {
-    paddingHorizontal: 59,
-    paddingVertical: 14,
-    textAlign: "center",
-    fontSize: 16,
-    borderRadius: 40,
-    borderColor: "grey",
-    borderWidth: 1,
   },
   displayImage: {
     width: 100,

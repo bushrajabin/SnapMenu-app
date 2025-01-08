@@ -20,19 +20,6 @@ export default function RegisterRestaurant() {
     updatedFields[index].input = value;
     setInputFields(updatedFields);
   };
-
-  //   home pageee
-  // const toHomePage = () => {
-  //   // Check if all fields are filled
-  //   const allFieldsFilled = inputFields.every((field) => field.input.trim());
-
-  //   if (inputFields) {
-  //     Alert.alert("Error", "Please fill in all fields.");
-  //   } else {
-  //     router.navigate("/HomePage");
-  //   }
-  // };
-
   return (
     <SafeAreaView style={Styles.container}>
       <View style={Styles.topContainer}>
@@ -52,13 +39,15 @@ export default function RegisterRestaurant() {
             </View>
           );
         })}
-        <TouchableOpacity style={Styles.button}>
-          <BlackBgButtons
+
+<TouchableOpacity  style={Styles.button}>
+<BlackBgButtons
             title={"Get Started"}
             onPress={() => router.navigate("/HomePage")}
+           
           />
-          {/* <BlackBgButtons title={"Get Started"} /> */}
-        </TouchableOpacity>
+</TouchableOpacity>
+  
       </View>
     </SafeAreaView>
   );
@@ -95,7 +84,10 @@ const Styles = StyleSheet.create({
     borderColor: "grey",
   },
   button: {
-    marginHorizontal: 100,
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"center",
     marginTop: 90,
+    width:"100%",
   },
 });

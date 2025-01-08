@@ -15,11 +15,12 @@ export default function BlackBgButtons({ title, onPress }) {
 const styles = StyleSheet.create({
   buttonContainer: {
     backgroundColor: "#000",
-    borderRadius: 100,
+    borderRadius: 10,
     paddingVertical: 16,
-    paddingHorizontal:35,
+    paddingHorizontal: 30,
     alignItems: "center",
     justifyContent: "center",
+    width: "40%",
   },
   buttonText: {
     color: "#fff",

@@ -8,29 +8,15 @@ import {
   Pressable,
 } from "react-native";
 import { offerDishes } from "@/components/Common";
-import FullWidthButtons from "@/components/FullWidthButtons";
 import { router } from "expo-router";
-// import DateTimePicker from "react-native-ui-datepicker";
-// import dayjs from "dayjs";
-
+import BlackBgButtons from "@/components/BlackBgButtons";
 export default function OfferDishes() {
   const [values, setValues] = useState(offerDishes);
-  // const [date, setDate] = useState(dayjs());
-  // const [showDatePicker, setShowDatePicker] = useState(false);
-
   const handleInputChanges = (text, index) => {
     const updatedFields = [...values];
     updatedFields[index].input = text;
     setValues(updatedFields);
   };
-
-  // const handleDateSelection = (selectedDate: number) => {
-  //   const updatedFields = [...values];
-  //   updatedFields[1].input = dayjs(selectedDate).format("YYYY-MM-DD"); // Format date as needed
-  //   setValues(updatedFields);
-  //   setShowDatePicker(false); // Close the date picker
-  // };
-
   return (
     <SafeAreaView style={Styles.container}>
       <View style={Styles.commonDiv}>
@@ -41,37 +27,17 @@ export default function OfferDishes() {
               placeholder={fields.title}
               onChangeText={(text) => handleInputChanges(text, index)}
             />
-            {fields.icon && (
-              <Pressable
-              // onPress={() =>
-              //   fields.title === "Expiry Date" && setShowDatePicker(true)
-              // }
-              >
-                {fields.icon}
-              </Pressable>
-            )}
+            {fields.icon && <Pressable>{fields.icon}</Pressable>}
           </View>
         ))}
       </View>
 
       <View style={Styles.buttonContainer}>
-        <FullWidthButtons
+        <BlackBgButtons
           title={"Add to Offer"}
           onPress={() => router.navigate("/SpecialOffers")}
         />
       </View>
-
-      {/* Show Date Picker When Icon is Clicked */}
-      {/* {showDatePicker && (
-        <DateTimePicker
-          mode="single"
-          date={date}
-          onChange={(params) => {
-            setDate(params.date);
-            handleDateSelection(params.date); // Update the Expiry Date field
-          }}
-        />
-      )} */}
     </SafeAreaView>
   );
 }

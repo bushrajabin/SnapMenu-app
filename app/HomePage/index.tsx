@@ -73,7 +73,6 @@ const Styles = StyleSheet.create({
     height: 40,
     color: "white",
   },
-
   Text: {
     textDecorationLine: "underline",
     paddingHorizontal: 20,
@@ -83,8 +82,11 @@ const Styles = StyleSheet.create({
     letterSpacing: 2,
   },
   button: {
+    display: "flex",
+    flexDirection: "row",
     marginVertical: 100,
-    paddingHorizontal: 100,
+    justifyContent: "center",
     paddingVertical: "81%",
+    width: "100%",
   },
 });

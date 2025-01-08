@@ -8,8 +8,7 @@ import {
   Image,
 } from "react-native";
 import { RestaurentSetting } from "../../components/Common";
-import Icon from "react-native-vector-icons/AntDesign";
-const MenuIcon = require("../../assets/images/hamburger.png");
+import NavBar from "@/components/NavBar";
 import { Link, router } from "expo-router";
 
 export default function RestaurantSettingPage() {
@@ -17,14 +16,8 @@ export default function RestaurantSettingPage() {
   return (
     <SafeAreaView>
       <View style={Styles.mainContainer}>
-        <View style={Styles.topContainer}>
-          <Icon name="arrowleft" size={18} style={Styles.icon} />
-          <Text style={Styles.text}>Restaurant Settings</Text>
-          <TouchableOpacity style={Styles.manuIconDiv}>
-            <Image source={MenuIcon} style={Styles.menuIconImage} />
-          </TouchableOpacity>
-        </View>
-        <View style={Styles.itemContainer}>
+        <NavBar title={"Restaurant Settings"}/>
+         <View style={Styles.itemContainer}>
           {SettingItems.map((items, index) => {
             return (
               <TouchableOpacity
@@ -39,7 +32,6 @@ export default function RestaurantSettingPage() {
                 }}
               >
                 <Text style={Styles.text}>{items.title}</Text>
-
                 {items.Icon}
               </TouchableOpacity>
             );
@@ -56,22 +48,6 @@ const Styles = StyleSheet.create({
     display: "flex",
     flexDirection: "column",
     height: "100%",
-  },
-  topContainer: {
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingTop: 30,
-    paddingBottom: 3,
-    textAlign: "center",
-    alignItems: "center",
-  },
-  icon: {
-    borderRadius: 7,
-    borderColor: "black",
-    borderWidth: 1,
-    marginHorizontal: 20,
-    padding: 9,
   },
   itemContainer: {
     marginTop: 90,
