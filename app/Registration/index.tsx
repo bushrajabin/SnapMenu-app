@@ -66,7 +66,10 @@ export default function Registration() {
 
         {/* Sign Up Button */}
         {/* <View> */}
-          <Buttons title={"SignUp"} onPress={()=>router.navigate('/HomePage')} />
+        <Buttons
+          title={"SignUp"}
+          onPress={() => router.navigate("/HomePage")}
+        />
         {/* </View> */}
         {/* Already have an account option */}
         <Link href={"/Login"} style={styles.newAccount}>

@@ -11,15 +11,10 @@ import { Register } from "@/components/Common";
 import { TouchableOpacity } from "react-native";
 import BlackBgButtons from "@/components/BlackBgButtons";
 import { router } from "expo-router";
+import UserInput from "@/components/UserInput";
 
 export default function RegisterRestaurant() {
   const [inputFields, setInputFields] = useState(Register);
-
-  const handleInputChange = (value: string, index: number) => {
-    const updatedFields = [...inputFields];
-    updatedFields[index].input = value;
-    setInputFields(updatedFields);
-  };
   return (
     <SafeAreaView style={Styles.container}>
       <View style={Styles.topContainer}>
@@ -29,25 +24,18 @@ export default function RegisterRestaurant() {
       <View>
         {inputFields.map((values, index) => {
           return (
-            <View key={index} style={Styles.inputFields}>
-              <TextInput
-                placeholder={values.title}
-                value={values.input}
-                style={Styles.fields}
-                onChangeText={(value) => handleInputChange(value, index)}
-              />
+            <View key={index}>
+              <UserInput placeholder={values.title} value={values.input} />
             </View>
           );
         })}
 
-<TouchableOpacity  style={Styles.button}>
-<BlackBgButtons
+        <TouchableOpacity style={Styles.button}>
+          <BlackBgButtons
             title={"Get Started"}
             onPress={() => router.navigate("/HomePage")}
-           
           />
-</TouchableOpacity>
-  
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -70,24 +58,11 @@ const Styles = StyleSheet.create({
     color: "green",
     fontSize: 30,
   },
-  inputFields: {
-    paddingHorizontal: 10,
-    paddingVertical: 10,
-  },
-  fields: {
-    backgroundColor: "white",
-    paddingHorizontal: 20,
-    paddingVertical: 14,
-    borderRadius: 5,
-    fontSize: 17,
-    borderWidth: 1,
-    borderColor: "grey",
-  },
   button: {
-    display:"flex",
-    flexDirection:"row",
-    justifyContent:"center",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
     marginTop: 90,
-    width:"100%",
+    width: "100%",
   },
 });

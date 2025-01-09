@@ -20,10 +20,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 30,
     alignItems: "center",
     justifyContent: "center",
-    width: "40%",
   },
   buttonText: {
-    color: "#fff",
+    color: "white",
     fontSize: 16,
     fontWeight: "600",
   },

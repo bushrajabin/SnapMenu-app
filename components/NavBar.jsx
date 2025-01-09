@@ -1,9 +1,9 @@
+import { router } from "expo-router";
 import React from "react";
 import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 const MenuIcon = require("../assets/images/hamburger.png");
-// const MenuIcon = require("../../assets/images/hamburger.png");
 
 export default function NavBar({ title }) {
   return (

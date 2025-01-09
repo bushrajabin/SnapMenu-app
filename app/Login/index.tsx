@@ -9,84 +9,71 @@ import {
   SafeAreaView,
   Alert,
 } from "react-native";
-// import Icon from "react-native-vector-icons/FontAwesome";
+import { initialInputFields, Icons } from "../../components/Common";
 import { logoimage } from "../SplashScreen";
-import { initialInputFields } from "../../components/Common";
-import { Icons } from "../../components/Common";
 import { useRouter } from "expo-router";
 import Buttons from "@/components/Buttons";
+import UserInput from "@/components/UserInput";
 
 export default function LoginPage() {
-  const [inputFields, setInputFields] = useState(initialInputFields);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const router = useRouter();
 
-  // Handler to update input values
-  const handleInputChange = (value: string, index: number) => {
-    const updatedFields = [...inputFields];
-    updatedFields[index].input = value;
-    setInputFields(updatedFields);
+  const handleLogin = () => {
+    if (email && password) {
+      Alert.alert("Success", `Welcome back, ${email}!`);
+      router.navigate("/HomePage")
+    } else {
+      Alert.alert("Error", "Please fill in both fields.");
+    }
   };
 
-  // SIgnup
-  // const signUp = () => {
-  //   router.navigate("/TableManagementQR");
-  //   // Alert.alert("i")
-  // };
   return (
     <SafeAreaView style={styles.container}>
-      {/* Login Top-part */}
+      {/* Login Header */}
       <View style={styles.textContainer}>
         <Text style={styles.text}>Login Here</Text>
         <Text style={styles.text2}>Welcome back! You've been missed!</Text>
       </View>
 
-      {/* Input fields */}
+      {/* Input Fields */}
       <View style={styles.inputContainer}>
-        {inputFields.map((field, index) => (
-          <View key={index} style={styles.inputField}>
-            <TextInput
-              style={styles.textInput}
-              placeholder={field.title}
-              value={field.input}
-              onChangeText={(value) => handleInputChange(value, index)}
-              secureTextEntry={field.title.toLowerCase() === "password"} // Secure text for password
-            />
-          </View>
-        ))}
-        {/* ---Forgot password text--- */}
-        <Text style={styles.ForgotPassword}>Forgot your password?</Text>
-
-        {/* SignIn Button */}
-        <View>
-          <Buttons
-            title={"SignUp"}
-            onPress={() => router.navigate("/RegisterRestaurant")}
-          />
-        </View>
-
-        {/* Create new account option */}
-        <Pressable
-          onPress={() => router.push("/Registration")} // Fallback navigation
-        >
-          <Text style={styles.newAccount}>Create a new account</Text>
-        </Pressable>
+        <UserInput
+          placeholder="Enter Email"
+          value={email}
+          onChangeText={setEmail}
+        />
+        <UserInput
+          placeholder="Enter Password"
+          value={password}
+          onChangeText={setPassword}
+          secureTextEntry={true}
+        />
+        <Text style={styles.forgotPassword}>Forgot your password?</Text>
       </View>
-      {/* --Login with options-- */}
+
+      {/* Sign-In Button */}
+      <View style={styles.buttonContainer}>
+        <Buttons title={"Sign In"} onPress={handleLogin} />
+      </View>
+
+      {/* Create New Account Option */}
+      <Pressable onPress={() => router.push("/Registration")}>
+        <Text style={styles.newAccount}>Create a new account</Text>
+      </Pressable>
+
+      {/* Social Login Options */}
       <View style={styles.continueWithContainer}>
-        <Text style={styles.continueWith}> Or continue with</Text>
-
-        {/* ICONS {GOOGLE, FB, APPLE} */}
-        <View style={styles.IconsContainer}>
-          {Icons.map((icon, index) => {
-            return (
-              <View key={index} style={styles.Icon}>
-                {icon}
-              </View>
-            );
-          })}
+        <Text style={styles.continueWith}>Or continue with</Text>
+        <View style={styles.iconsContainer}>
+          {Icons.map((icon, index) => (
+            <View key={index} style={styles.icon}>
+              {icon}
+            </View>
+          ))}
         </View>
-
-        <Image source={logoimage} style={styles.LogoImage} />
+        <Image source={logoimage} style={styles.logoImage} />
       </View>
     </SafeAreaView>
   );
@@ -117,69 +104,50 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   inputContainer: {
-    width: "95%",
-    paddingHorizontal: 13,
-    display: "flex",
-    flexDirection: "column",
+    width: "90%",
+    marginTop: 20,
   },
-  inputField: {
-    marginBottom: 19,
-  },
-  inputLabel: {
-    fontSize: 16,
-    fontWeight: "bold",
-    color: "#333",
-    marginBottom: 6,
-  },
-  textInput: {
-    borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 8,
-    padding: 12,
-    fontSize: 15,
-    backgroundColor: "#F1F4FF",
-  },
-  ForgotPassword: {
+  forgotPassword: {
     textAlign: "right",
     color: "#1F41BB",
     fontWeight: "bold",
+    marginTop: 10,
+  },
+  buttonContainer: {
+    marginTop: 20,
+    width: "90%",
   },
   newAccount: {
     color: "#626262",
     fontWeight: "bold",
     textAlign: "center",
-    paddingTop: 30,
+    marginTop: 30,
   },
   continueWithContainer: {
-    display: "flex",
-    flexDirection: "column",
-    justifyContent: "center",
     alignItems: "center",
+    marginTop: 40,
   },
   continueWith: {
     color: "#1F41BB",
     fontWeight: "bold",
     fontSize: 15,
     textAlign: "center",
-    marginTop: 26,
   },
-  IconsContainer: {
-    display: "flex",
+  iconsContainer: {
     flexDirection: "row",
-    padding: 10,
+    marginTop: 10,
   },
-  Icon: {
+  icon: {
     backgroundColor: "lightgrey",
-    padding: 6,
-    width: 45,
-    margin: 9,
-    textAlign: "center",
-    borderRadius: 4,
+    padding: 10,
+    marginHorizontal: 10,
+    borderRadius: 6,
     alignItems: "center",
   },
-  LogoImage: {
+  logoImage: {
     width: 100,
-    objectFit: "contain",
-    paddingBottom: 40,
+    height: 100,
+    marginTop: 20,
+    resizeMode: "contain",
   },
 });

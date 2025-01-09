@@ -158,9 +158,22 @@ export const RestaurentSetting = [
   {
     title: "Manager Members",
     Icon: <Icon name="right" size={23} />,
+    link:"/ManageMember"
   },
   {
     title: "In-House Delivery",
     Icon: <Icon name="right" size={23} />,
   },
 ];
+
+//manage members---- 
+export const newMember=[
+  {
+    title: "Enter member email",
+    input: "",
+  },
+  {
+    title: "Enter member password",
+    input: "",
+  },
+]

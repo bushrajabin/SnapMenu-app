@@ -1,4 +1,5 @@
 import BlackBgButtons from "@/components/BlackBgButtons";
+import NavBar from "@/components/NavBar";
 import { router } from "expo-router";
 import React, { useState } from "react";
 import {
@@ -8,7 +9,8 @@ import {
   TouchableOpacity,
   ScrollView,
   StyleSheet,
-  Modal} from "react-native";
+  Modal,
+} from "react-native";
 
 export default function TableManagementScreen() {
   const [tableCount, setTableCount] = useState<string>(""); // Input value as a string
@@ -44,9 +46,9 @@ export default function TableManagementScreen() {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Table Management & QR</Text>
+      <NavBar title={"Table Settings"} />
       {/* Input for table count */}
-      {/* <Text style={styles.addTables}>Add Tables</Text> */}
+      <Text style={styles.addTables}>Add Tables</Text>
       <TextInput
         style={styles.input}
         placeholder="Enter Number of Tables"
@@ -56,17 +58,17 @@ export default function TableManagementScreen() {
       />
       {/* Cancel Button */}
       <View style={styles.buttonContainer}>
+        {/* Generate Button */}
+        <TouchableOpacity>
+          <BlackBgButtons title={"Generate"} onPress={handleGenerateTables} />
+        </TouchableOpacity>
+
         <TouchableOpacity
           onPress={() => setTableCount("")}
           style={styles.cancelButton}
         >
           <Text>Cancel</Text>
         </TouchableOpacity>
-
-        {/* Generate Button */}
-        <View>
-          <BlackBgButtons title={"Generate"} onPress={handleGenerateTables} />
-        </View>
       </View>
       {/* Table List */}
       {/* <Text style={styles.addTables}>Table List</Text> */}
@@ -106,7 +108,9 @@ export default function TableManagementScreen() {
           </View>
         </Modal>
       )}
-      <BlackBgButtons title={"Print All QR Codes"}/>
+      <TouchableOpacity style={styles.downloadQRButton}>
+        <BlackBgButtons title={"Download All"} />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -115,24 +119,19 @@ export default function TableManagementScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
     backgroundColor: "#fff",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-    marginBottom: 20,
-    textAlign: "center",
   },
   addTables: {
     textDecorationLine: "underline",
     backgroundColor: "whitesmoke",
     padding: 5,
-    width: 100,
     marginVertical: 10,
+    paddingLeft: 30,
     textAlign: "center",
     borderRadius: 5,
-    fontSize: 12,
+    fontSize: 18,
+    marginHorizontal: 40,
+    marginLeft: 0,
   },
   input: {
     borderWidth: 1,
@@ -140,6 +139,7 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     padding: 10,
     marginBottom: 10,
+    marginHorizontal: 20,
   },
   buttonContainer: {
     display: "flex",
@@ -147,35 +147,36 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     marginBottom: 20,
+    marginTop: 20,
   },
   cancelButton: {
     backgroundColor: "#f0f0f0",
     alignItems: "center",
-    borderRadius: 100,
+    borderRadius: 30,
     borderColor: "grey",
     borderWidth: 2,
     fontWeight: "bold",
-    paddingHorizontal: 45,
-    paddingVertical: 15,
+    paddingHorizontal: 46,
+    paddingVertical: 14,
   },
   tableList: {
     marginTop: 10,
+    marginHorizontal: 20,
   },
   tableItem: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    borderWidth: 1,
+    borderBottomWidth: 1,
     borderColor: "#ccc",
-    borderRadius: 5,
-    padding: 10,
+    paddingVertical: 15,
     marginBottom: 10,
   },
   tableNumber: {
     fontWeight: "bold",
   },
   qrPreview: {
-    color: "blue",
+    color: "black",
     textDecorationLine: "underline",
   },
   modalContainer: {
@@ -226,5 +227,11 @@ const styles = StyleSheet.create({
   closeButtonText: {
     color: "red",
     fontWeight: "bold",
-  }
+  },
+  downloadQRButton: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "center",
+    paddingVertical: 20,
+  },
 });
