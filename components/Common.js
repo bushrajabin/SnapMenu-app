@@ -57,27 +57,6 @@ export const Setting = {
   day: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
 };
 
-// AddMenu fields---
-
-export const addMenu = [
-  {
-    title: "Enter Item Name",
-    input: "",
-  },
-  {
-    title: "Enter Item Description",
-    input: "",
-  },
-  {
-    title: "Enter Item Price",
-    input: "",
-  },
-  // {
-  //   title: "Upload Cover Image",
-  // input:null
-  // },
-];
-
 // Offer Dish---
 
 // Offer Dish with Icons
@@ -146,28 +125,46 @@ export const Register = [
     title: "Enter city",
     input: "",
   },
+  {
+    title: "Enter GST Percentage",
+    input: "",
+  },
 ];
 
 // Restaurent setting---
+import ToggleSwitch from "toggle-switch-react-native";
+
 export const RestaurentSetting = [
   {
     title: "Table Settings",
     Icon: <Icon name="right" size={23} />,
-    link:"/TableManagementQR"
+    link: "/TableManagementQR",
   },
   {
     title: "Manager Members",
     Icon: <Icon name="right" size={23} />,
-    link:"/ManageMember"
+    link: "/ManageMember",
   },
   {
     title: "In-House Delivery",
     Icon: <Icon name="right" size={23} />,
   },
+  {
+    title: "Pay to order",
+    Icon: (
+      <ToggleSwitch
+        isOn={false}
+        onColor="green"
+        offColor="#ecf0f1"
+        size="small"
+        // onToggle={(isOn) => console.log("changed to:", isOn)}
+      />
+    ),
+  },
 ];
 
-//manage members---- 
-export const newMember=[
+//manage members----
+export const newMember = [
   {
     title: "Enter member email",
     input: "",
@@ -176,4 +173,4 @@ export const newMember=[
     title: "Enter member password",
     input: "",
   },
-]
+];

@@ -23,7 +23,7 @@ export default function LoginPage() {
   const handleLogin = () => {
     if (email && password) {
       Alert.alert("Success", `Welcome back, ${email}!`);
-      router.navigate("/HomePage")
+      router.navigate("/RegisterRestaurant")
     } else {
       Alert.alert("Error", "Please fill in both fields.");
     }

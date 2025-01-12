@@ -12,6 +12,7 @@ import { TouchableOpacity } from "react-native";
 import BlackBgButtons from "@/components/BlackBgButtons";
 import { router } from "expo-router";
 import UserInput from "@/components/UserInput";
+import Buttons from "@/components/Buttons";
 
 export default function RegisterRestaurant() {
   const [inputFields, setInputFields] = useState(Register);
@@ -31,7 +32,11 @@ export default function RegisterRestaurant() {
         })}
 
         <TouchableOpacity style={Styles.button}>
-          <BlackBgButtons
+          {/* <BlackBgButtons
+            title={"Get Started"}
+            onPress={() => router.navigate("/HomePage")}
+          /> */}
+          <Buttons
             title={"Get Started"}
             onPress={() => router.navigate("/HomePage")}
           />
@@ -62,7 +67,5 @@ const Styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: 90,
-    width: "100%",
   },
 });

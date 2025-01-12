@@ -10,29 +10,25 @@ import {
   Alert,
 } from "react-native";
 import { logoimage } from "../SplashScreen";
-import { addMenu } from "../../components/Common";
 import { router } from "expo-router";
-import Icon from "react-native-vector-icons/FontAwesome";
+import Icon from "react-native-vector-icons/AntDesign";
 import BlackBgButtons from "@/components/BlackBgButtons";
 const MenuIcon = require("../../assets/images/hamburger.png");
+const MenuImage = require("../../assets/images/MenuImage.png");
 import * as ImagePicker from "expo-image-picker";
+import UserInput from "@/components/UserInput";
 
 export default function AddMenu() {
-  const [text, setText] = useState("");
-  const [menuFields, setMenuFields] = useState(addMenu);
   const [menuName, setMenuName] = useState("");
   const [category, setCategory] = useState("");
   const [image, setImage] = useState("");
-
+  const [itemName, setItemName] = useState("");
+  const [itemPrice, setItemPrice] = useState("");
+  const [itemDescription, setItemDescription] = useState("");
   // Radio Button State
   const [selectedDishType, setSelectedDishType] = useState("Veg");
-
-  // Input Change Handler
-  const handleInputChange = (text: string, index: number) => {
-    const updatedFields = [...menuFields];
-    updatedFields[index].input = text;
-    setMenuFields(updatedFields);
-  };
+  // After done the menu
+  const [isMenuDone, setIsMenuDone] = useState(false);
 
   // Upload Image
   const uploadImage = async () => {
@@ -53,13 +49,31 @@ export default function AddMenu() {
   // Done Button after fill the values--
 
   const DoneMenu = () => {
-    const allFields = menuFields.every((field) => field.input.trim());
-    if (!allFields) {
-      Alert.alert("filled all the values!!");
+    if (
+      menuName == "" ||
+      category == "" ||
+      image == "" ||
+      itemName == "" ||
+      itemPrice == "" ||
+      itemDescription == "" ||
+      selectedDishType == ""
+    ) {
+      Alert.alert("All field are require");
     } else {
-      // Alert.alert("filled all the valuesfff!!");
-      router.navigate("/HomePage");
+      // Alert.alert("hiii")
+      setIsMenuDone(true);
     }
+  };
+
+  // delete
+  const handleDelete = () => {
+    setIsMenuDone(true);
+  };
+
+  // add section
+  const addSection = () => {
+    Alert.alert("h");
+    setIsMenuDone(false);
   };
   return (
     <SafeAreaView style={Styles.MenuMainContainer}>
@@ -71,8 +85,8 @@ export default function AddMenu() {
         </View>
       </View>
       {/* Menu Name */}
-      <View style={Styles.menuName}>
-        <TextInput
+      <View>
+        <UserInput
           placeholder="Menu Name"
           value={menuName}
           onChangeText={(text) => setMenuName(text)}
@@ -80,73 +94,103 @@ export default function AddMenu() {
       </View>
       {/* Category */}
       <View style={Styles.categoryField}>
-        <TextInput
-          placeholder="Category"
+        <UserInput
+          placeholder="Category field                        "
           value={category}
           onChangeText={(text) => setCategory(text)}
         />
+        <Icon name="delete" size={20} onPress={handleDelete} />
       </View>
-      {/* Add Menu Input Fields */}
-      <View>
-        {menuFields.map((fields, index) => (
-          <View key={index} style={Styles.inputDiv}>
-            <TextInput
-              placeholder={fields.title}
-              value={fields.input}
-              style={Styles.inputField}
-              onChangeText={(text) => handleInputChange(text, index)}
+
+      {isMenuDone ? (
+        <View>
+          {/* Add Menu Input Fields */}
+          <View>
+            <UserInput
+              placeholder="Item Name"
+              value={itemName}
+              onChangeText={(text) => setItemName(text)}
             />
+            <UserInput
+              placeholder="Item Price"
+              value={itemPrice}
+              onChangeText={(text) => setItemPrice(text)}
+            />
+            <UserInput
+              placeholder="Item Description"
+              value={itemDescription}
+              onChangeText={(text) => setItemDescription(text)}
+            />
+
+            {/* Dish Type Radio Buttons */}
+            <View style={Styles.radioContainer}>
+              <Text style={Styles.radioHeader}>Select Dish Type:</Text>
+              {["Veg", "Non-Veg", "Egg"].map((option) => (
+                <TouchableOpacity
+                  key={option}
+                  style={Styles.radioButtonContainer}
+                  onPress={() => setSelectedDishType(option)}
+                >
+                  <View style={Styles.radioButton}>
+                    {selectedDishType === option && (
+                      <View style={Styles.radioButtonSelected} />
+                    )}
+                  </View>
+                  <Text>{option}</Text>
+                </TouchableOpacity>
+              ))}
+            </View>
+
+            {/* Upload Cover Image */}
+            <View style={Styles.uploadFileField}>
+              {image ? (
+                <Image source={{ uri: image }} style={Styles.displayImage} />
+              ) : (
+                <>
+                  <Text style={Styles.uploadText}>Upload Cover Image</Text>
+                  <TouchableOpacity onPress={uploadImage}>
+                    <View style={Styles.uploadIcon}>
+                      <Icon name="upload" size={10} color={"white"} />
+                      <Text style={Styles.uploadFileText}>Upload File</Text>
+                    </View>
+                  </TouchableOpacity>
+                </>
+              )}
+            </View>
           </View>
-        ))}
 
-        {/* Dish Type Radio Buttons */}
-        <View style={Styles.radioContainer}>
-          <Text style={Styles.radioHeader}>Select Dish Type:</Text>
-          {["Veg", "Non-Veg", "Egg"].map((option) => (
-            <TouchableOpacity
-              key={option}
-              style={Styles.radioButtonContainer}
-              onPress={() => setSelectedDishType(option)}
-            >
-              <View style={Styles.radioButton}>
-                {selectedDishType === option && (
-                  <View style={Styles.radioButtonSelected} />
-                )}
-              </View>
-              <Text>{option}</Text>
+          {/* Buttons for add menu section */}
+          <View>
+            <View style={Styles.Buttons}>
+              <BlackBgButtons title={"Done"} onPress={DoneMenu} />
+              <BlackBgButtons
+                title={"Add Item"}
+                onPress={() => router.navigate("/AddMenu")}
+              />
+            </View>
+          </View>
+        </View>
+      ) : (
+        <View style={Styles.isMenu}>
+          <View style={Styles.menuItems}>
+            <Image source={MenuImage} style={Styles.MenuImage} />
+            <Text>
+              {itemName}-({itemPrice})
+            </Text>
+            <Text>{itemDescription}</Text>
+
+            <TouchableOpacity style={Styles.editButton}>
+              <BlackBgButtons title={"   Edit   "} />
             </TouchableOpacity>
-          ))}
-        </View>
+          </View>
 
-        {/* Upload Cover Image */}
-        <View style={Styles.uploadFileField}>
-          {image ? (
-            <Image source={{ uri: image }} style={Styles.displayImage} />
-          ) : (
-            <>
-              <Text style={Styles.uploadText}>Upload Cover Image</Text>
-              <TouchableOpacity onPress={uploadImage}>
-                <View style={Styles.uploadIcon}>
-                  <Icon name="upload" size={10} color={"white"} />
-                  <Text style={Styles.uploadFileText}>Upload File</Text>
-                </View>
-              </TouchableOpacity>
-            </>
-          )}
+          {/*Buttons for IsMenu section  */}
+          <TouchableOpacity style={Styles.isMenuButtons}>
+            <BlackBgButtons title={"Add Section"} onPress={addSection} />
+            <BlackBgButtons title={"Save Menu"} />
+          </TouchableOpacity>
         </View>
-      </View>
-
-      {/* Bottom Section */}
-      <View>
-        <View style={Styles.Buttons}>
-          <BlackBgButtons title={"Done"} />
-
-          <BlackBgButtons
-            title={"Add Item"}
-            onPress={() => router.navigate("/AddMenu")}
-          />
-        </View>
-      </View>
+      )}
     </SafeAreaView>
   );
 }
@@ -179,43 +223,13 @@ const Styles = StyleSheet.create({
     height: 40,
     color: "white",
   },
-  menuName: {
-    backgroundColor: "whitesmoke",
-    textDecorationLine: "underline",
-    alignItems: "center",
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    marginHorizontal: 70,
-    marginVertical: 25,
-    fontSize: 18,
-    letterSpacing: 2,
-    borderRadius: 10,
-  },
   categoryField: {
-    backgroundColor: "whitesmoke",
-    textDecorationLine: "underline",
-    marginLeft: 5,
-    marginHorizontal: "50%",
+    display: "flex",
+    justifyContent: "space-between",
+    flexDirection: "row",
     marginBottom: 20,
-    paddingVertical: 10,
-    paddingHorizontal: 10,
-    fontSize: 18,
-    borderRadius: 10,
-  },
-  inputDiv: {
-    backgroundColor: "white",
-    padding: 5,
-    margin: 7,
-    marginHorizontal: 20,
-    borderColor: "grey",
-    borderWidth: 1,
-    borderRadius: 10,
-  },
-  inputField: {
-    color: "black",
-    padding: 8,
-    fontSize: 14,
-    paddingHorizontal: 20,
+    marginRight: 20,
+    alignItems: "center",
   },
   radioContainer: {
     marginHorizontal: 20,
@@ -275,9 +289,9 @@ const Styles = StyleSheet.create({
     fontSize: 10,
   },
   Buttons: {
-    display:"flex",
+    display: "flex",
     flexDirection: "row",
-    justifyContent:"space-evenly",
+    justifyContent: "space-evenly",
     alignItems: "center",
     gap: 10,
   },
@@ -286,5 +300,29 @@ const Styles = StyleSheet.create({
     height: 70,
     alignSelf: "center",
     borderRadius: 6,
+  },
+  // isMenu Styles----
+  isMenu: {
+    backgroundColor: "yellow",
+  },
+  menuItems: {
+    backgroundColor: "green",
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-around",
+    alignItems: "center",
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+  },
+  MenuImage: {
+    width: 40,
+    height: 40,
+  },
+  isMenuButtons: {
+    marginHorizontal: 80,
+    gap: 10,
+  },
+  editButton: {
+    // marginHorizontal: "30%",
   },
 });

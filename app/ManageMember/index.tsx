@@ -46,9 +46,13 @@ const ManageMembers = () => {
 
         {isMemberAvailable ? (
           <View style={Styles.memberDetails}>
-            <Text style={Styles.text1}>Member Details</Text>
-            <Text style={Styles.text2}>Email: {email}</Text>
-            <Text style={Styles.text2}>Password: {password}</Text>
+            <Text style={Styles.text1}>Existing Member</Text>
+            <View style={Styles.emailSection}>
+              <Text style={Styles.text2}>Email: {email}</Text>
+              <TouchableOpacity>
+                <Text style={Styles.removeButton}>Remove</Text>
+              </TouchableOpacity>
+            </View>
           </View>
         ) : (
           <View style={Styles.availableNot}>
@@ -79,25 +83,43 @@ const Styles = StyleSheet.create({
   },
   addButton: {
     justifyContent: "center",
-    marginHorizontal: 80,
+    marginHorizontal: 15,
     marginTop: 10,
   },
   availableNot: {
     marginTop: 10,
   },
-  text1: {
-    fontSize: 25,
-    fontWeight: "bold",
-    textAlign: "center",
-  },
   text2: {
     textAlign: "center",
     fontSize: 16,
-    fontWeight: "300",
+    fontWeight: "bold",
     color: "grey",
   },
   memberDetails: {
     marginTop: 10,
+  },
+  text1: {
+    fontSize: 25,
+    fontWeight: "bold",
+    marginLeft: 25,
+    marginVertical: 5,
+  },
+  emailSection: {
+    display: "flex",
+    flexDirection: "row",
+    backgroundColor: "white",
     alignItems: "center",
+    padding: 10,
+    borderWidth: 1,
+    borderColor: "grey",
+    borderRadius: 5,
+    marginHorizontal: 25,
+  },
+  removeButton: {
+    backgroundColor: "red",
+    paddingVertical: 6,
+    paddingHorizontal: 16,
+    marginHorizontal: 6,
+    borderRadius: 5,
   },
 });

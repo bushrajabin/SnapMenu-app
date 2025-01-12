@@ -4,15 +4,21 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { SafeAreaView } from "react-native";
 import Icon from "react-native-vector-icons/AntDesign";
 const MenuIcon = require("../assets/images/hamburger.png");
-
+import { useNavigation } from "@react-navigation/native";
 export default function NavBar({ title }) {
+  const navigation = useNavigation();
+
   return (
     <SafeAreaView>
       <View style={Styles.topContainer}>
         <Icon name="arrowleft" size={18} style={Styles.icon} />
         <Text style={Styles.text}>{title}</Text>
         <TouchableOpacity style={Styles.manuIconDiv}>
-          <Image source={MenuIcon} style={Styles.menuIconImage} />
+          <Image
+            source={MenuIcon}
+            style={Styles.menuIconImage}
+            onPress={() => navigation.toggleDrawer()}
+          />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

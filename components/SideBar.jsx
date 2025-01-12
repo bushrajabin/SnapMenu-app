@@ -10,7 +10,7 @@ import {
 import { SideBarItems } from "./Common";
 import { logoimage } from "@/app/SplashScreen";
 import { Link, router } from "expo-router";
-
+import Icon from "react-native-vector-icons/AntDesign";
 export default function SideBar() {
   return (
     <SafeAreaView>
@@ -19,6 +19,7 @@ export default function SideBar() {
         {SideBarItems.map((item, index) => (
           <TouchableOpacity
             key={index}
+            style={Styles.iconDiv}
             onPress={() => {
               if (item.link) {
                 router.navigate(`${item.link}`);
@@ -27,12 +28,13 @@ export default function SideBar() {
               }
             }}
           >
-            {item.icon}
+            <View style={Styles.iconWrapper}>{item.icon}</View>
             <Text>{item.title}</Text>
           </TouchableOpacity>
         ))}
         <TouchableOpacity style={Styles.logoutButton}>
-          <Text style={Styles.logoutText}>Log Out</Text>
+          <Icon name="logout" color={"red"} />
+          <Text style={Styles.logoutButtonText}>Log out</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
@@ -44,6 +46,7 @@ const Styles = StyleSheet.create({
     backgroundColor: "yellow",
     display: "flex",
     flexDirection: "column",
+    width: "50%",
     // flex:1
   },
   logoImage: {
@@ -56,6 +59,10 @@ const Styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     backgroundColor: "red",
+    textAlign: "center",
+    alignItems: "center",
+    paddingVertical: 10,
+    paddingHorizontal: 10,
   },
   iconWrapper: {
     backgroundColor: "green",
@@ -70,15 +77,17 @@ const Styles = StyleSheet.create({
     textDecorationLine: "underline",
   },
   logoutButton: {
-    marginTop: 30,
-    paddingVertical: 10,
-    paddingHorizontal: 20,
-    backgroundColor: "black",
-    borderRadius: 5,
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    // marginTop: 30,
+    // paddingVertical: 10,
+    // paddingHorizontal: 20,
+    // backgroundColor: "black",
+    // borderRadius: 5,
   },
-  logoutText: {
-    color: "white",
-    fontSize: 16,
-    fontWeight: "600",
+  logoutButtonText: {
+    color: "red",
   },
 });
