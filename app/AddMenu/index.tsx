@@ -60,21 +60,21 @@ export default function AddMenu() {
     ) {
       Alert.alert("All field are require");
     } else {
-      // Alert.alert("hiii")
       setIsMenuDone(true);
     }
   };
 
   // delete
-  const handleDelete = () => {
-    setIsMenuDone(true);
-  };
+  // const handleDelete = () => {
+  //   setIsMenuDone();
+  // };
 
   // add section
-  const addSection = () => {
-    Alert.alert("h");
-    setIsMenuDone(false);
-  };
+  // const addSection = () => {
+  //   setItemName(true)
+  //   Alert.alert("h");
+  //   // setIsMenuDone(false);
+  // };
   return (
     <SafeAreaView style={Styles.MenuMainContainer}>
       {/* Top Section */}
@@ -99,10 +99,30 @@ export default function AddMenu() {
           value={category}
           onChangeText={(text) => setCategory(text)}
         />
-        <Icon name="delete" size={20} onPress={handleDelete} />
+        <Icon name="delete" size={20} />
       </View>
 
       {isMenuDone ? (
+        <View style={Styles.isMenu}>
+          <View style={Styles.menuItems}>
+            <Image source={MenuImage} style={Styles.MenuImage} />
+            <Text>
+              {itemName}-({itemPrice})
+            </Text>
+            <Text>{itemDescription}</Text>
+
+            <TouchableOpacity style={Styles.editButton}>
+              <BlackBgButtons title={"   Edit   "} />
+            </TouchableOpacity>
+          </View>
+
+          {/*Buttons for IsMenu section  */}
+          <TouchableOpacity style={Styles.isMenuButtons}>
+            <BlackBgButtons title={"Add Section"} />
+            <BlackBgButtons title={"Save Menu"} />
+          </TouchableOpacity>
+        </View>
+      ) : (
         <View>
           {/* Add Menu Input Fields */}
           <View>
@@ -169,26 +189,6 @@ export default function AddMenu() {
               />
             </View>
           </View>
-        </View>
-      ) : (
-        <View style={Styles.isMenu}>
-          <View style={Styles.menuItems}>
-            <Image source={MenuImage} style={Styles.MenuImage} />
-            <Text>
-              {itemName}-({itemPrice})
-            </Text>
-            <Text>{itemDescription}</Text>
-
-            <TouchableOpacity style={Styles.editButton}>
-              <BlackBgButtons title={"   Edit   "} />
-            </TouchableOpacity>
-          </View>
-
-          {/*Buttons for IsMenu section  */}
-          <TouchableOpacity style={Styles.isMenuButtons}>
-            <BlackBgButtons title={"Add Section"} onPress={addSection} />
-            <BlackBgButtons title={"Save Menu"} />
-          </TouchableOpacity>
         </View>
       )}
     </SafeAreaView>

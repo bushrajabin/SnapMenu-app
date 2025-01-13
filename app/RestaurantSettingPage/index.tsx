@@ -16,8 +16,8 @@ export default function RestaurantSettingPage() {
   return (
     <SafeAreaView>
       <View style={Styles.mainContainer}>
-        <NavBar title={"Restaurant Settings"}/>
-         <View style={Styles.itemContainer}>
+        <NavBar title={"Restaurant Settings"} />
+        <View style={Styles.itemContainer}>
           {SettingItems.map((items, index) => {
             return (
               <TouchableOpacity
@@ -67,18 +67,5 @@ const Styles = StyleSheet.create({
     fontSize: 17,
     fontWeight: 600,
     letterSpacing: 1,
-  },
-  manuIconDiv: {
-    backgroundColor: "black",
-    width: 60,
-    alignItems: "center",
-    borderBottomLeftRadius: 20,
-    borderTopLeftRadius: 20,
-    padding: 2,
-  },
-  menuIconImage: {
-    width: 40,
-    height: 40,
-    color: "white",
   },
 });

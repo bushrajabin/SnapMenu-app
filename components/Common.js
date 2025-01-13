@@ -94,6 +94,7 @@ export const SideBarItems = [
   {
     icon: <Icon name="filetext1" size={20} color={"white"} />,
     title: "Orders",
+    link:"/Orders"
   },
   {
     icon: <Icon name="creditcard" size={20} color={"white"} />,
@@ -163,6 +164,21 @@ export const RestaurentSetting = [
   },
 ];
 
+// Orders page---
+export const OrdersPage=[
+  {
+    title: "Active Orders",
+    Icon: <Icon name="right" size={23} />,
+  },
+  {
+    title: "Completed orders",
+    Icon: <Icon name="right" size={23} />,
+  },
+  {
+    title: "Rejected orders",
+    Icon: <Icon name="right" size={23} />,
+  },
+]
 //manage members----
 export const newMember = [
   {
